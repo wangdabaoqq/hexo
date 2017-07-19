@@ -12,7 +12,7 @@ keywords: "前端,js,jquery,javascript,html5,王大爷,王大爷的三轮子,程
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: //tyty.me
+url: https://tyty.me
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
