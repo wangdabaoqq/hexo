@@ -29,11 +29,11 @@ rem是CSS3中新增加的一个单位值，他和em单位一样，都是一个�
 							|  48  | 48/16 = 3     |
 							-------------------------        
 如果你要设置一个不同的值，那么需要在根元素<html>中定义，为了方便计算，时常将在<html>元素中设置font-size值为62.5%:
-<pre>
-html {
-    font-size: 62.5%; /* 10 ÷ 16 × 100% = 62.5% */
-}
-</pre>
+
+	html {
+	    font-size: 62.5%; /* 10 ÷ 16 × 100% = 62.5% */
+	}
+
 相当于在<html>中设置font-size为10px，此时，上面示例中所示的值将会改变：
 
 							|  px  |     rem        |
@@ -50,9 +50,7 @@ html {
 							|  48  | 48/10 = 4.8    |
 							-------------------------        
 由于rem是CSS3中的一个属性，很多人首先关注的就是浏览器对他的支持度，我截了一张caniuse对rem属性的兼容表：
-
-
-
+![CSS](http://www.w3cplus.com/sites/default/files/styles/print_image/public/blogs/2013/sass/sass-px-rem-1.jpg)
 从上图可以清楚的知道，rem在众多浏览器中都已得到很好的支持，如果您的项目不用考虑IE低版本的话，你就可以放心的使用了，如果您的项目在IE低版本中还占有不少的比例，那么你还在担心使用rem不能兼容，而不敢使用。其实是没有必要的，可以针对低版本的IE浏览器做一定的处理：
 
 		html { font-size: 62.5%; } 
@@ -60,9 +58,11 @@ html {
 		h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */	
 
 这样一来解决了IE低版本的不能兼容的问题，但生出另一个不足地方，就是增加了代码量。必竟鱼和熊掌很多时候不能兼得嘛。
-
+<br>
+<br>
+<div>
 如果你想更深入的了解rem如何使用，建议您阅读：
-
+<br>
  <a href="http://www.w3cplus.com/css3/define-font-size-with-css3-rem">CSS3的REM设置字体大小</a>——viaw3cplus
 
  <a href="http://snook.ca/archives/html_and_css/font-size-with-rem">FONT SIZING WITH REM</a>——viaJonathan Snook
@@ -70,9 +70,11 @@ html {
  <a href="http://css-tricks.com/theres-more-to-the-css-rem-unit-than-font-sizing/">There’s more to the CSS rem unit than font sizing</a>——viacss-tricks
 
  <a href="http://techtime.getharvest.com/blog/in-defense-of-rem-units">In Defense Of Rem Units</a>——viaMatthew Lettini
+
  <a href="http://csswizardry.com/2011/05/font-sizing-with-rem-could-be-avoided/">Font sizing with rem could be avoided</a>——viaHarry
 
  <a href="http://ued.taobao.com/blog/2013/05/rem-font-size/">响应式十日谈第一日：使用 rem 设置文字大小</a>——via一丝
+</div>
 
 <h2>为什么要使用rem</h2>
 
