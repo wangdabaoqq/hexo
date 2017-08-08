@@ -1,8 +1,16 @@
+---
+title: vuecnode
+date: 2017-8-8 11:30:48
+tags:
+	- 综合
+	- vue
+---
 <h1>VueCnode</h1>
 [![Build Status](https://www.travis-ci.org/wangdabaoqq/VueCnode.svg?branch=master)](https://www.travis-ci.org/wangdabaoqq/VueCnode)
 <h2>项目简介</h2>
 	本项目我借鉴了github上很多关于Cnode的项目,加上了一些自己的理解。最终敲定了VueCnode,当然我只能说是搬运工,项目采用的是vue技术构建.
 <h2>总结</h2>
+<!--more-->
 <pre>
 在我浏览了很多关于vuecnode的项目我认为写的很好的是<a href="https://github.com/lzxb/vue-cnode">lzxb</a>有兴趣的可以了解下。
 当然我在写cnode项目时,有几点我目前没有解决的第一是页面后退数据还原及滚动条位置还原,我百度及
