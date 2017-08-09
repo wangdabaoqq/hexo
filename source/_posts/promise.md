@@ -10,7 +10,7 @@ brief: "Promise"
 reward: true
 ---
 <h1>八段代码彻底掌握 Promise</h1>
-
+<!--more-->
 <h2>1.Promise的立即执行性 </h2>
 	
 	var p = new Promise(function(resolve, reject){
