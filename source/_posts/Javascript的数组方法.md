@@ -28,6 +28,8 @@ function repeatString(str, n) {
 console.log(repeatString('abc', 3)); // abcabcabc
 </pre>
 
+<!--more-->
+
 ## push()和pop() ES5
 
 push()：可以接收任意数量的参数，把他们逐个添加到数组末尾,并返回修改后数组的长度。
