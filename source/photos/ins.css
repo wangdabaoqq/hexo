@@ -26,11 +26,7 @@
 }
 .instagram .thumb {
 	width: 25%;
-<<<<<<< HEAD
 	height: 0; 
-=======
-	height: 0;
->>>>>>> d1632dbc8ade078fb0b423614cb2d93868774e61
 	padding-bottom: 25%;
 	position: relative;
 	display: inline-block;
@@ -146,16 +142,4 @@
 		width: 90%;
 		height: 90%;
 	}
-<<<<<<< HEAD
 }
-/*video*/
-.video-container {
-z-index: 1;
-position: relative;
-padding-bottom: 56.25%;
-margin: 0 auto;
-}
-.video-container iframe, .video-container object, .video-container embed {z-index: 1;position: absolute;top: 0;left: 7%;width: 85%;height: 85%;box-shadow: 0px 0px 20px 2px #888888;}
-=======
-}
->>>>>>> d1632dbc8ade078fb0b423614cb2d93868774e61
