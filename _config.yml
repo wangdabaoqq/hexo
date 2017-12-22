@@ -125,7 +125,7 @@ deploy:
   type: rsync
   host: 47.94.153.153
   user: root
-  root: /www/hexo/hexo/
+  root: /www/hexo
   port: 22
   delete: true
   verbose: true
@@ -145,9 +145,9 @@ baidusitemap:
 
 # deploy:
   # type: rsync
-  # host: 120.25.235.101
+  # host: 47.94.153.153
   # user: root
-  # root: /usr/local/nginx/litten.me/
+  # root: /
   # port: 22
 
 
