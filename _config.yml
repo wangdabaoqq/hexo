@@ -124,7 +124,7 @@ exclude_generator:
 deploy:
   type: rsync
   host: 47.94.153.153
-  user: root
+  user: wangdabao
   root: /www/hexo
   port: 22
   delete: true
@@ -146,8 +146,8 @@ baidusitemap:
 # deploy:
   # type: rsync
   # host: 47.94.153.153
-  # user: root
-  # root: /
+  # user: wangdabao
+  # root: /www/hexo
   # port: 22
 
 
