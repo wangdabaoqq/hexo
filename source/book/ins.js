@@ -116,20 +116,20 @@
         var data = res.list[j].arr;
         var liTmpl = "";
         for (var i = 0, len = data.link.length; i < len; i++) {
-          var minSrc = 'https://raw.githubusercontent.com/lawlite19/blog-back-up/master/min_photos/' + data.link[i];
-          var src = 'https://raw.githubusercontent.com/lawlite19/blog-back-up/master/photos/' + data.link[i];
+          var minSrc = 'https://raw.githubusercontent.com/wangdabaoqq/hexo/master/min_photos/' + data.link[i];
+          var src = 'https://raw.githubusercontent.com/wangdabaoqq/hexo/master/photos/' + data.link[i];
           var type = data.type[i];
           var target = src + (type === 'video' ? '.mp4' : '.jpg');
           src += '';
 
           liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
-                <a href="' + src + '" itemprop="contentUrl" data-size="1080x1080" data-type="' + type + '" data-target="' + src + '">\
+                <a href="' + src + '" itemprop="contentUrl" data-size="640x640" data-type="' + type + '" data-target="' + target + '">\
                   <img class="reward-img" data-type="' + type + '" data-src="' + minSrc + '" src="/assets/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
                 </a>\
                 <figcaption style="display:none" itemprop="caption description">' + data.text[i] + '</figcaption>\
             </figure>';
         }
-        ulTmpl = ulTmpl + '<section class="archives album"><h1 class="year">' + data.year + '年<em>' + data.month + '月</em></h1>\
+        ulTmpl = ulTmpl + '</h1>\
         <ul class="img-box-ul">' + liTmpl + '</ul>\
         </section>';
       }
@@ -143,28 +143,28 @@
       return "/assets/ins/" + arr[arr.length - 1];
     };
 
-    var ctrler = function ctrler(data) {
-      var imgObj = {};
-      for (var i = 0, len = data.length; i < len; i++) {
-        var y = data[i].y;
-        var m = data[i].m;
-        var src = replacer(data[i].src);
-        var text = data[i].text;
-        var key = y + "" + ((m + "").length == 1 ? "0" + m : m);
-        if (imgObj[key]) {
-          imgObj[key].srclist.push(src);
-          imgObj[key].text.push(text);
-        } else {
-          imgObj[key] = {
-            year: y,
-            month: m,
-            srclist: [src],
-            text: [text]
-          };
-        }
-      }
-      render(imgObj);
-    };
+    // var ctrler = function ctrler(data) {
+    //   var imgObj = {};
+    //   for (var i = 0, len = data.length; i < len; i++) {
+    //     var y = data[i].y;
+    //     var m = data[i].m;
+    //     var src = replacer(data[i].src);
+    //     var text = data[i].text;
+    //     var key = y + "" + ((m + "").length == 1 ? "0" + m : m);
+    //     if (imgObj[key]) {
+    //       imgObj[key].srclist.push(src);
+    //       imgObj[key].text.push(text);
+    //     } else {
+    //       imgObj[key] = {
+    //         year: y,
+    //         month: m,
+    //         srclist: [src],
+    //         text: [text]
+    //       };
+    //     }
+    //   }
+    //   render(imgObj);
+    // };
 
     function loadData(success) {
       if (!searchData) {
