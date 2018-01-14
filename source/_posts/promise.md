@@ -9,6 +9,8 @@ tags:
 brief: "Promise"
 reward: true
 ---
+![](https://qn.tyty.me/252_1.jpg)
+<!--more-->
 <h2>1.Promise的立即执行性 </h2>
 	
 	var p = new Promise(function(resolve, reject){
@@ -27,7 +29,6 @@ reward: true
 	"after new Promise"
 	"success"
 Promise对象表示未来某个将要发生的事件，但在创建（new）Promise时，作为Promise参数传入的函数是会被立即执行的，只是其中执行的代码可以是异步代码。有些同学会认为，当Promise对象调用then方法时，Promise接收的函数才会执行，这是错误的。因此，代码中"create a promise"先于"after new Promise"输出。
-<!--more-->
 <h2>2.Promise 三种状态</h2>
 
 	var p1 = new Promise(function(resolve,reject){

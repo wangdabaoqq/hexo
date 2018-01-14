@@ -9,7 +9,8 @@ tags:
 brief: "关于node的小机灵"
 reward: true
 ---
-原文地址:https://zhuanlan.zhihu.com/p/24730075
+![](https://qn.tyty.me/436_1.jpg)
+<!--more-->
 最近看到
 序言
 
@@ -22,22 +23,21 @@ reward: true
 
 
 从中可以看到每一条段子都是一个 .joke-list-item, 当点击下一页的时候 url中地址的最后一位数就表示分页的页码。有些图片是缩略图，我们把缩略图和正常图的地址进行了比较，发现他们的地址格式是一样的，缩略图在small文件夹下，大图在big文件夹下。分析完了我们就可以写代码了。
-<!--more-->
 
 开始
 
 这个简单爬虫分两个部分，1、获取图片地址。2、进行下载。因为下载是一个耗时的操作，所以两个部分分开了，这样也有利于后期改动。
 
 导入必要的模块，使用cheerio 是第三方模块，可以使用 npm install cheerio 进行安装
+```
+	var http = require('http');			// http 网路
+	var cheerio = require('cheerio');	// html 解析
+	var fs = require("fs");				// 流
 
-var http = require('http');			// http 网路
-var cheerio = require('cheerio');	// html 解析
-var fs = require("fs");				// 流
+	var queryHref = "http://www.haha.mx/topic/1/new/"; 	// 设置被查询的目标网址
+	var querySearch = 1;								// 设置分页位置
 
-var queryHref = "http://www.haha.mx/topic/1/new/"; 	// 设置被查询的目标网址
-var querySearch = 1;								// 设置分页位置
-
-var urls = [];			// 所有待下载的图片地址
+	var urls = [];			// 所有待下载的图片地址
 
 这个是解析图片地址方法
 
@@ -70,14 +70,15 @@ function getHtml(href, serach) {
     });
   });
 }
-</pre>
+```
 这个是下载图片的方法
 
 /**
  * 下载图片
  * @param {String} imgurl：图片地址
  */
-<pre>
+
+```
 function downImg(imgurl) {
   var narr = imgurl.replace("http://image.haha.mx/", "").split("/")
   
@@ -101,11 +102,11 @@ function downImg(imgurl) {
     });
   });
 }
-</pre>
+```
 好，到这里核心的东西就写完了，然后就是组装一下，让他运行起来
 
 附一个完整代码：
-<pre>
+```
 var http = require('http');			// http 网路
 var cheerio = require('cheerio');	// html 解析
 var fs = require("fs");				// 流
@@ -124,6 +125,7 @@ var downCount = 0;		// 实际下载的
  * @param {String}： url
  * @param {int}： serach
  */
+
 function getHtml(href, serach) {
 	console.log("正在获取第 "+serach + " 页的图片");
 	var pageData = "";
@@ -157,13 +159,13 @@ function getHtml(href, serach) {
 		});
 	});
 }
-
-</pre>
+```
 /**
  * 下载图片
  * @param {String} imgurl：图片地址
  */
-<pre>
+
+```
 function downImg(imgurl) {
 	var narr = imgurl.replace("http://image.haha.mx/", "").split("/")
 	// 做一步优化，如果存在文件，则不下载
@@ -222,7 +224,7 @@ function start(){
 }
 
 start();
-</pre>
+```
 因为nodejs是异步的，所以在 start 方法中的for之后调用下载是不行，这个时候显示的 urls 中是没有数据的。
 
 所以就是在 getHtml 中 等所有的连接分析完毕之后在调用 downImg，downImg下载完成之后在进行下一个下载。
@@ -296,4 +298,6 @@ start();
 ![](https://qn.tyty.me/201.jpg)
 
 嘘... 不要告诉别人....
+
+原文地址:https://zhuanlan.zhihu.com/p/24730075
 

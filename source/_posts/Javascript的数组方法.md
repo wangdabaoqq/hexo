@@ -9,7 +9,8 @@ tags:
 brief: "ES5-ES6"
 reward: true
 ---
-
+![](https://qn.tyty.me/445_1.jpg)
+<!--more-->
 ## join() ES5
 
 join(speparator):将数组的元素组起一个字符串,spearator为分隔符,省略的话则用默认用逗号为分隔符,该方法只接收一个参数,即分隔符。
@@ -27,8 +28,6 @@ function repeatString(str, n) {
 };
 console.log(repeatString('abc', 3)); // abcabcabc
 </pre>
-
-<!--more-->
 
 ## push()和pop() ES5
 
