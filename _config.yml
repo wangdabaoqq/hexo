@@ -12,7 +12,7 @@ keywords: "前端,js,jquery,javascript,html5,王西柚,王西柚技术,搞技术
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://tyty.me
+url: https://wangdabaoqq.github.io/hexo-back-up/
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -121,15 +121,13 @@ exclude_generator:
  # repository: https://github.com/maker997/maker997.github.io.git
  # branch: master
 
-deploy:
-  type: rsync
-  host: 47.94.153.153
-  user: wangdabao
-  root: /www/hexo
-  port: 22
-  delete: true
-  verbose: true
-  ignore_errors: false
+# deploy:
+#   type: rsync
+#   host: 47.94.153.153
+#   user: wangdabao
+#   root: /www/hexo
+#   port: 22
+#   delete: false
 
 #SEO优化
 sitemap:
@@ -138,10 +136,10 @@ baidusitemap:
     path: baidusitemap.xml
  #Deployment
  #Docs: http://hexo.io/docs/deployment.html
-#deploy:
- #type: git
- #repository: git@git.coding.net:a1135629490/hexo.git
- #branch: master
+deploy:
+  type: git
+  repository: git@github.com:wangdabaoqq/hexo-back-up.git
+  branch: master
 
 # deploy:
   # type: rsync

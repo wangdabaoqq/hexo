@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tyty.me/"/>
-  <updated>2018-07-09T02:22:05.280Z</updated>
+  <updated>2018-07-09T08:36:28.252Z</updated>
   <id>https://tyty.me/</id>
   
   <author>
@@ -17,20 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>&#39;我所知道的apply与call&#39;</title>
-    <link href="https://tyty.me/2018/06/13/%E6%88%91%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84apoly%E4%B8%8Ecall/"/>
-    <id>https://tyty.me/2018/06/13/我所知道的apoly与call/</id>
-    <published>2018-06-13T06:24:00.000Z</published>
-    <updated>2018-07-09T02:22:05.280Z</updated>
+    <title>&#39;2018年中总结&#39;</title>
+    <link href="https://tyty.me/2018/07/09/%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/"/>
+    <id>https://tyty.me/2018/07/09/年中总结/</id>
+    <published>2018-07-09T05:37:00.000Z</published>
+    <updated>2018-07-09T08:36:28.252Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a> <h2 id="我所知道的apply与call"><a href="#我所知道的apply与call" class="headerlink" title="我所知道的apply与call"></a>我所知道的apply与call</h2><blockquote><p>在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于<code>js儿子-call与apply</code>的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过我的角度去说下我对于apply和call的看法. 其实在刚刚认识call或者apply的时候, 我在想这两个货是到底干嘛的, 在没有认识他们之前, 我也完成了某些功能的开发呀, 这两个货色的作用到底是什么, 我觉得我有必要去好好了解下. </p></blockquote><h2 id="开始认识call与apply"><a href="#开始认识call与apply" class="headerlink" title="开始认识call与apply"></a>开始认识call与apply</h2><p>  我打开了熟悉的<code>mdn</code>恩, 他好像挂了. 算了我用手机打开吧. 其中描述中这样的说道: 可以让call或者apply中的对象调用当前<br>  对象所有的function. 你可以使用call()来实现继承: 写一个方法, 然后让另一个新的对象来继承它(而不是在新对象中再写一次这个方法).<br>  难道是这样: </p><pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  name: <span class="string">'wangdaye'</span>,</span><br><span class="line">  showName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">  name: <span class="string">'liayi'</span></span><br><span class="line">&#125;</span><br><span class="line">foo.showName.call(bar);</span><br></pre></td></tr></table></figure>我觉得这个栗子(栗子是我抄的_-_), 想表达的其实和上面描述里面提到的, 其实是一回事, 我觉得是这样, `bar`这个人想看下自己家的房产证名字写的是谁的, 但是没有梯子, 因为房产证放在需要梯子才能够到的地方, 所以他问了邻居foo, 嘿我用下你家梯子(showNmae方法), 行用吧, 然后就看到了自己的房产证是&quot;老婆的名字&quot;. 大概的的意思是, bar这个家伙没有自己方法, 但是他又想用, 怎么办那就借用了foo的方法. 就是这样. </code></pre><h2 id="apply与apply的异同"><a href="#apply与apply的异同" class="headerlink" title="apply与apply的异同"></a>apply与apply的异同</h2><p>  同: <code>apply</code>与<code>call</code> 方法的第一个参数是在运行指定的<code>this</code>值. 需要注意的是, 指定的<code>this</code>值并不一定是该函数执行时真正的<code>this</code>值, 如果这个函数的处于非严格模式下, 则指定为<code>null</code>与<code>undefined</code>的<code>this</code>值会自动指向全局对象(浏览器中就是<code>window</code>对象), 同时值为原始值(数字, 字符串, 布尔值)的<code>this</code>会指向该原始值的自动包装对象.<br>  关于这句话, 我再举个栗子:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,array)</span><br></pre></td></tr></table></figure></p><p>  我在稍微说下: 这个栗子就很好的解释了上面提到的如果<code>apply</code>或者<code>call</code>的第一个参数, 我传递了<code>null</code>或者<code>undefined</code>那么这个时候<code>this</code>的指的就是上面提到的<code>window</code>, 而<code>window</code>里面有<code>Math.max</code>.<br>  再举个栗子: </p><p>  异: <code>call</code>参数是这样的形式(this, num1, num2, ….)<br>      <code>apply</code>参数是这样的形式(this, []) </p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="年中总结"><a href="#年中总结" class="headerlink" title="年中总结"></a>年中总结</h2><pre><code>&gt;  距离上一个总结已经半年过去了, 上次的总结对于自己的要求和目标我还历历在目。说说我还在坚持的以及没有坚持到的, 看书这件事我今年开始了坚持, 因为我买了kindle, 目前javascript高程我看了80%, 但是有些知识点我还是很模糊, 我觉得在看的同时, 对于一些不太明白, 不太清晰的代码。一定要去敲下好吗, 我求你了。 因为我在看的时候有些没有敲, 相对与敲过代码的而言, 记忆薄弱了很多。看了曾探写的`javascript设计模式与开发实践`, 这本书我没有看完, 但我受益匪浅, 忽然觉得js这门语言很好玩。等我觉得有些概念了, 我会去写关于这本书的一些设计模式的自己看法与见解。对于自己而言有时候还是会很焦躁, 感觉会的还是太少了。对于博客我真的越来越懒, 更新频率越来越低下。说的是一个星期更新一篇, 拖到了一个月更新一次甚至更久。 健身方面的话, 中间另个一个健身房到期了, 又找了个便宜的。离得稍微近一点的。</code></pre>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
-&lt;h2 id=&quot;我所知道的apply与call&quot;&gt;&lt;a href=&quot;#我所知道的apply与call&quot; class=&quot;headerlink&quot; title=&quot;我所知道的apply与call&quot;&gt;&lt;/a&gt;我所知道的apply与call&lt;/h2&gt;&lt;b
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;年中总结&quot;&gt;&lt;a href=&quot;#年中总结&quot; class=&quot;headerlink&quot; title=&quot;年中总结&quot;&gt;&lt;/a&gt;年中总结&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;&amp;gt;  距离上一个总结已经半年过去了, 上次的总结对于自己的要求和目
+      
+    
+    </summary>
+    
+    
+      <category term="年中总结" scheme="https://tyty.me/tags/%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&#39;我所知道的apply与call&#39;</title>
+    <link href="https://tyty.me/2018/06/13/%E6%88%91%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84apoly%E4%B8%8Ecall/"/>
+    <id>https://tyty.me/2018/06/13/我所知道的apoly与call/</id>
+    <published>2018-06-13T06:24:00.000Z</published>
+    <updated>2018-07-09T05:45:21.596Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="我所知道的apply与call"><a href="#我所知道的apply与call" class="headerlink" title="我所知道的apply与call"></a>我所知道的apply与call</h2><blockquote><p>在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于<code>js儿子-call与apply</code>的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过我的角度去说下我对于apply和call的看法. 其实在刚刚认识call或者apply的时候, 我在想这两个货是到底干嘛的, 在没有认识他们之前, 我也完成了某些功能的开发呀, 这两个货色的作用到底是什么, 我觉得我有必要去好好了解下. </p><h2 id="开始认识call与apply"><a href="#开始认识call与apply" class="headerlink" title="开始认识call与apply"></a>开始认识call与apply</h2><p>  我打开了熟悉的<code>mdn</code>恩, 他好像挂了. 算了我用手机打开吧. 其中描述中这样的说道: 可以让call或者apply中的对象调用当前<br>  对象所有的function. 你可以使用call()来实现继承: 写一个方法, 然后让另一个新的对象来继承它(而不是在新对象中再写一次这个方法).<br>  难道是这样: </p></blockquote><pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  name: <span class="string">'wangdaye'</span>,</span><br><span class="line">  showName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">  name: <span class="string">'liayi'</span></span><br><span class="line">&#125;</span><br><span class="line">foo.showName.call(bar);</span><br></pre></td></tr></table></figure>我觉得这个栗子(栗子是我抄的_-_), 想表达的其实和上面描述里面提到的, 其实是一回事, 我觉得是这样, `bar`这个人想看下自己家的房产证名字写的是谁的, 但是没有梯子, 因为房产证放在需要梯子才能够到的地方, 所以他问了邻居foo, 嘿我用下你家梯子(showNmae方法), 行用吧, 然后就看到了自己的房产证是&quot;老婆的名字&quot;. 大概的的意思是, bar这个家伙没有自己方法, 但是他又想用, 怎么办那就借用了foo的方法. 就是这样. </code></pre><h2 id="apply与apply的异同"><a href="#apply与apply的异同" class="headerlink" title="apply与apply的异同"></a>apply与apply的异同</h2><p>  同: <code>apply</code>与<code>call</code> 方法的第一个参数是在运行指定的<code>this</code>值. 需要注意的是, 指定的<code>this</code>值并不一定是该函数执行时真正的<code>this</code>值, 如果这个函数的处于非严格模式下, 则指定为<code>null</code>与<code>undefined</code>的<code>this</code>值会自动指向全局对象(浏览器中就是<code>window</code>对象), 同时值为原始值(数字, 字符串, 布尔值)的<code>this</code>会指向该原始值的自动包装对象.<br>  关于这句话, 我再举个栗子:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,array)</span><br></pre></td></tr></table></figure></p><p>  我在稍微说下: 这个栗子就很好的解释了上面提到的如果<code>apply</code>或者<code>call</code>的第一个参数, 我传递了<code>null</code>或者<code>undefined</code>那么这个时候<code>this</code>的指的就是上面提到的<code>window</code>, 而<code>window</code>里面有<code>Math.max</code>.<br>  再举个栗子: </p><p>  异: <code>call</code>参数是这样的形式(this, num1, num2, ….)<br>      <code>apply</code>参数是这样的形式(this, []) </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;我所知道的apply与call&quot;&gt;&lt;a href=&quot;#我所知道的apply与call&quot; class=&quot;headerlink&quot; title=&quot;我所知道的apply与call&quot;&gt;&lt;/a&gt;我所知道的apply与call&lt;/h2&gt;&lt;bl
       
     
     </summary>
