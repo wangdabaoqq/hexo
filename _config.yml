@@ -13,7 +13,7 @@ keywords: "前端,js,jquery,javascript,html5,王西柚,王西柚技术,搞技术
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://wangdabaoqq.github.io/hexo-back-up/
-root: /
+root: /hexo-back-up/
 permalink: :year/:month/:day/:title/
 tag_dir: tags
 archive_dir: archives
