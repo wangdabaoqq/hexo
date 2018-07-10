@@ -9,7 +9,7 @@ tags:
 brief: "ES5-ES6"
 reward: true
 ---
-![](https://qn.tyty.me/445_1.jpg)
+![](https://wangdabaoqq.github.io/hexo-back-up/assets/img/445_1.jpg)
 <!--more-->
 ## join() ES5
 

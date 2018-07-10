@@ -7,7 +7,7 @@ tags:
      - 关于this
 reward: true
 ---
-![](https://cdn.gratisography.com/photos/44HH.jpg)
+![](https://wangdabaoqq.github.io/hexo-back-up/assets/img/qingCat.jpg)
 <!--more-->
 ##  题目
   ```js

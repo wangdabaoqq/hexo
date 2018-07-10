@@ -12,6 +12,6 @@ reward: true
 ## git
 <!--more-->
 
-![git](https://qn.tyty.me/git%E5%91%BD%E4%BB%A4%E5%9B%BE.jpg)
+![git](https://wangdabaoqq.github.io/hexo-back-up/assets/img/git命令.jpg)
 
 转载自掘金,手打。

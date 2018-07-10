@@ -4,8 +4,8 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/07/09/%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-07-09T08:36:28.252Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/07/09/%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-07-10T08:28:32.398Z</lastmod>
     <data>
         <display>
         <title>'2018年中总结'</title>
@@ -21,8 +21,46 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/06/13/%E6%88%91%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84apoly%E4%B8%8Ecall/</loc>
-    <lastmod>2018-07-09T05:45:21.596Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/01/14/%E6%AD%A3%E5%88%99/</loc>
+    <lastmod>2018-07-10T08:26:22.210Z</lastmod>
+    <data>
+        <display>
+        <title>'深入理解正则'</title>
+        <pubTime>2017-01-14T07:54:48.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>正则</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/09/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF/</loc>
+    <lastmod>2018-07-10T08:25:45.742Z</lastmod>
+    <data>
+        <display>
+        <title>'移动端资源整合部分'</title>
+        <pubTime>2017-09-27T15:09:56.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>移动端</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/06/13/%E6%88%91%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84apoly%E4%B8%8Ecall/</loc>
+    <lastmod>2018-07-10T08:24:48.610Z</lastmod>
     <data>
         <display>
         <title>'我所知道的apply与call'</title>
@@ -40,14 +78,14 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/02/22/2017%E5%B9%B4%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-04-28T09:29:20.082Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/03/20/%E9%BC%A0%E6%A0%87%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E5%85%BC%E5%AE%B9/</loc>
+    <lastmod>2018-07-10T08:22:38.138Z</lastmod>
     <data>
         <display>
-        <title>'2017年度总结'</title>
-        <pubTime>2018-02-22T07:54:48.000Z</pubTime>
+        <title>'mousewheel与DOMMouseScroll'</title>
+        <pubTime>2018-03-20T14:26:00.000Z</pubTime>
         
-        <tag>总结</tag>
+        <tag>事件兼容</tag>
          
          
            
@@ -57,14 +95,14 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/04/28/Chrome%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2018-04-28T07:29:03.000Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/08/31/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2018-07-10T08:21:24.770Z</lastmod>
     <data>
         <display>
-        <title>'Chrome扩展程序'</title>
-        <pubTime>2018-04-28T06:54:48.000Z</pubTime>
+        <title>'面试题目'</title>
+        <pubTime>2017-08-30T16:00:00.000Z</pubTime>
         
-        <tag>插件</tag>
+        <tag>面试</tag>
          
          
            
@@ -74,8 +112,120 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/04/23/Javascript%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/</loc>
-    <lastmod>2018-04-23T07:09:07.000Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/04/15/%E6%8A%80%E6%9C%AF%E8%B4%B4/</loc>
+    <lastmod>2018-07-10T08:20:47.774Z</lastmod>
+    <data>
+        <display>
+        <title>技术贴</title>
+        <pubTime>2017-04-15T05:30:48.000Z</pubTime>
+        
+        <tag>综合</tag>
+         
+        <tag>技术</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/06/29/windows-ubuntu/</loc>
+    <lastmod>2018-07-10T08:20:00.862Z</lastmod>
+    <data>
+        <display>
+        <title>windows-ubuntu</title>
+        <pubTime>2017-06-29T05:30:48.000Z</pubTime>
+        
+        <tag>综合</tag>
+         
+        <tag>服务器</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/03/02/this%E7%9A%84%E5%80%BC%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/</loc>
+    <lastmod>2018-07-10T08:18:21.222Z</lastmod>
+    <data>
+        <display>
+        <title>'this的值到底是什么？'</title>
+        <pubTime>2018-03-02T05:54:48.000Z</pubTime>
+        
+        <tag>关于this</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/07/22/px%E8%BD%ACrem/</loc>
+    <lastmod>2018-07-10T08:07:25.619Z</lastmod>
+    <data>
+        <display>
+        <title>css3</title>
+        <pubTime>2017-07-22T05:57:48.000Z</pubTime>
+        
+        <tag>综合</tag>
+         
+        <tag>css3</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/08/10/promise/</loc>
+    <lastmod>2018-07-10T08:06:19.507Z</lastmod>
+    <data>
+        <display>
+        <title>'Promise'</title>
+        <pubTime>2017-08-10T02:54:48.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>ES6</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/02/14/node%E7%88%AC%E8%99%AB/</loc>
+    <lastmod>2018-07-10T08:05:23.723Z</lastmod>
+    <data>
+        <display>
+        <title>'福利 - 不过百行代码的爬虫爬取美女图'</title>
+        <pubTime>2017-02-14T01:54:48.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>node</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/04/23/Javascript%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2018-07-10T08:04:19.231Z</lastmod>
     <data>
         <display>
         <title>'Javascript异步与同步'</title>
@@ -92,16 +242,17 @@
     </url>
 
     
-    
   <url>
-    <loc>https://tyty.me/2018/03/20/%E9%BC%A0%E6%A0%87%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E5%85%BC%E5%AE%B9/</loc>
-    <lastmod>2018-03-20T15:07:09.285Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/09/20/Javascript%E7%9A%84%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-07-10T08:01:46.247Z</lastmod>
     <data>
         <display>
-        <title>'mousewheel与DOMMouseScroll'</title>
-        <pubTime>2018-03-20T14:26:00.000Z</pubTime>
+        <title>'Javascript数组方法(ES5-ES6)'</title>
+        <pubTime>2017-09-20T14:30:12.000Z</pubTime>
         
-        <tag>事件兼容</tag>
+        <tag>javascript</tag>
+         
+        <tag>Array方法</tag>
          
          
            
@@ -111,14 +262,14 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/03/02/this%E7%9A%84%E5%80%BC%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/</loc>
-    <lastmod>2018-03-02T02:47:49.000Z</lastmod>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/10/01/git%E5%91%BD%E4%BB%A4%E5%9B%BE(%E5%85%A8)/</loc>
+    <lastmod>2018-07-10T08:00:41.103Z</lastmod>
     <data>
         <display>
-        <title>'this的值到底是什么？'</title>
-        <pubTime>2018-03-02T05:54:48.000Z</pubTime>
+        <title>'git命令(全)'</title>
+        <pubTime>2017-10-01T14:02:12.000Z</pubTime>
         
-        <tag>关于this</tag>
+        <tag>git命令</tag>
          
          
            
@@ -128,7 +279,42 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/01/10/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/</loc>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/04/28/Chrome%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2018-07-10T07:56:21.735Z</lastmod>
+    <data>
+        <display>
+        <title>'Chrome扩展程序'</title>
+        <pubTime>2018-04-28T06:54:48.000Z</pubTime>
+        
+        <tag>插件</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/02/22/2017%E5%B9%B4%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-07-10T07:53:42.223Z</lastmod>
+    <data>
+        <display>
+        <title>'2017年度总结'</title>
+        <pubTime>2018-02-22T07:54:48.000Z</pubTime>
+        
+        <tag>总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/01/10/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/</loc>
     <lastmod>2018-03-02T02:41:09.000Z</lastmod>
     <data>
         <display>
@@ -147,26 +333,7 @@
 
     
   <url>
-    <loc>https://tyty.me/2017/09/20/Javascript%E7%9A%84%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2018-03-02T02:40:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>'Javascript数组方法(ES5-ES6)'</title>
-        <pubTime>2017-09-20T14:30:12.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-        <tag>Array方法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2018/01/14/%E6%88%91%E5%9C%A8%E6%9C%AA%E6%9D%A5%E7%AD%89%E4%BD%A0/</loc>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/01/14/%E6%88%91%E5%9C%A8%E6%9C%AA%E6%9D%A5%E7%AD%89%E4%BD%A0/</loc>
     <lastmod>2018-01-14T08:47:51.060Z</lastmod>
     <data>
         <display>
@@ -185,7 +352,7 @@
 
     
   <url>
-    <loc>https://tyty.me/2018/01/12/%E4%BD%A0%E4%BC%9A%E7%88%B1%E6%88%91%E5%BE%88%E4%B9%85%E5%90%97/</loc>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2018/01/12/%E4%BD%A0%E4%BC%9A%E7%88%B1%E6%88%91%E5%BE%88%E4%B9%85%E5%90%97/</loc>
     <lastmod>2018-01-14T08:47:15.407Z</lastmod>
     <data>
         <display>
@@ -204,26 +371,7 @@
 
     
   <url>
-    <loc>https://tyty.me/2017/04/15/%E6%8A%80%E6%9C%AF%E8%B4%B4/</loc>
-    <lastmod>2018-01-14T08:15:54.716Z</lastmod>
-    <data>
-        <display>
-        <title>技术贴</title>
-        <pubTime>2017-04-15T05:30:48.000Z</pubTime>
-        
-        <tag>综合</tag>
-         
-        <tag>技术</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/07/18/%E8%AE%A4%E9%94%99/</loc>
+    <loc>https://wangdabaoqq.github.io/hexo-back-up/hexo-back-up/2017/07/18/%E8%AE%A4%E9%94%99/</loc>
     <lastmod>2018-01-14T08:15:18.000Z</lastmod>
     <data>
         <display>
@@ -241,136 +389,6 @@
     </url>
 
     
-  <url>
-    <loc>https://tyty.me/2017/08/31/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2018-01-14T08:10:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>'面试题目'</title>
-        <pubTime>2017-08-30T16:00:00.000Z</pubTime>
-        
-        <tag>面试</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/07/22/px%E8%BD%ACrem/</loc>
-    <lastmod>2018-01-14T08:04:49.973Z</lastmod>
-    <data>
-        <display>
-        <title>css3</title>
-        <pubTime>2017-07-22T05:57:48.000Z</pubTime>
-        
-        <tag>综合</tag>
-         
-        <tag>css3</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/06/29/windows-ubuntu/</loc>
-    <lastmod>2018-01-14T08:00:13.492Z</lastmod>
-    <data>
-        <display>
-        <title>windows-ubuntu</title>
-        <pubTime>2017-06-29T05:30:48.000Z</pubTime>
-        
-        <tag>综合</tag>
-         
-        <tag>服务器</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/09/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF/</loc>
-    <lastmod>2018-01-14T07:58:07.000Z</lastmod>
-    <data>
-        <display>
-        <title>'移动端资源整合部分'</title>
-        <pubTime>2017-09-27T15:09:56.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>移动端</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/08/10/promise/</loc>
-    <lastmod>2018-01-14T07:48:32.791Z</lastmod>
-    <data>
-        <display>
-        <title>'Promise'</title>
-        <pubTime>2017-08-10T02:54:48.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>ES6</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/01/14/%E6%AD%A3%E5%88%99/</loc>
-    <lastmod>2018-01-14T07:44:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>'深入理解正则'</title>
-        <pubTime>2017-01-14T07:54:48.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>正则</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://tyty.me/2017/02/14/node%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2018-01-14T07:43:45.705Z</lastmod>
-    <data>
-        <display>
-        <title>'福利 - 不过百行代码的爬虫爬取美女图'</title>
-        <pubTime>2017-02-14T01:54:48.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-        <tag>node</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
     
     
@@ -399,22 +417,4 @@
     
     
     
-    
-    
-  <url>
-    <loc>https://tyty.me/2017/10/01/git%E5%91%BD%E4%BB%A4%E5%9B%BE(%E5%85%A8)/</loc>
-    <lastmod>2017-12-22T04:11:23.821Z</lastmod>
-    <data>
-        <display>
-        <title>'git命令(全)'</title>
-        <pubTime>2017-10-01T14:02:12.000Z</pubTime>
-        
-        <tag>git命令</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
 </urlset>

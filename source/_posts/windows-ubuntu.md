@@ -5,7 +5,7 @@ tags:
 	- 综合
 	- 服务器
 ---
-![](https://qn.tyty.me/165_1.jpg)
+![](https://wangdabaoqq.github.io/hexo-back-up/assets/img/165_1.jpg)
 <!--more-->
 前段时间从windows服务器换到了ubuntu服务器,讲道理ubuntu是真的比
 windows好用,当然linux的也是类似的,没用过就不多BB,我强烈推荐一波,如果说你正好要买服务器,考虑下linux的系统的服务器,当然你说不会什么shell命令什么都没有关系,跟着视频撸一遍,这样下来新鲜感十足,如有神助。

@@ -7,7 +7,7 @@ tags:
      - 插件
 reward: true
 ---
-![](https://qn.tyty.me/chrome.jpg)
+![](https://wangdabaoqq.github.io/hexo-back-up/assets/img/chrome.jpg)
 
 <!--more-->
 ##  Chrome扩展程序

@@ -9,7 +9,7 @@ tags:
 brief: "Promise"
 reward: true
 ---
-![](https://qn.tyty.me/252_1.jpg)
+![](https://wangdabaoqq.github.io/hexo-back-up/assets/img/252_1.jpg)
 <!--more-->
 <h2>1.Promise的立即执行性 </h2>
 	
