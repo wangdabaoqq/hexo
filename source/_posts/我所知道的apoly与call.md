@@ -43,3 +43,19 @@ reward: true
   异: `call`参数是这样的形式(this, num1, num2, ....)
       `apply`参数是这样的形式(this, []) 
 ##  未完待续。。。。。。
+-----------------------------------------更新-----------------------------------------------------------
+##  this与bind
+  我觉得既然聊到了`apply`与`call`就多聊一些, 加上`this`与`bind`。要说明this到底指向谁, 我在掘金上看到一篇关于this指向的文章, 提到了`this永远指向最后调用它的那个对象`。
+  ```
+    var name = 'wangda';
+    function aa () {
+      var name = "wanger";
+      console.log(name);  //  wangda
+    }
+    aa();
+  ```
+
+
+
+
+  
