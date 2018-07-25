@@ -8,18 +8,17 @@
   <link rel="dns-prefetch" href="https://wangdabaoqq.github.io/hexo-back-up">
   <title>&#39;underscore系列之throttle&quot;&#39; | 王西柚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="underscore函数节流前言  在说underscore函数节流之前, 还是明确概念, 什么是函数节流。函数节流简单来说就是&amp;#39;开源节流&amp;#39;, 什么意思呢？就是减少某个函数调用的太频繁, 降低频次。一般来讲, 对于dom的频繁操作会引起浏览器的重绘或者重排, 这个时候我们就可以来使用节流不要让他过快的操作dom, 从而页面渲染起来也会更加流畅。  举个场景: dom元素的移动与拖">
-<meta name="keywords" content="underscore.js">
+  <meta name="keywords" content="underscore.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;underscore系列之throttle&quot;&#39;">
 <meta property="og:url" content="https://wangdabaoqq.github.io/hexo-back-up/2018/07/25/underscore系列之函数节流/index.html">
 <meta property="og:site_name" content="王西柚">
-<meta property="og:description" content="underscore函数节流前言  在说underscore函数节流之前, 还是明确概念, 什么是函数节流。函数节流简单来说就是&amp;#39;开源节流&amp;#39;, 什么意思呢？就是减少某个函数调用的太频繁, 降低频次。一般来讲, 对于dom的频繁操作会引起浏览器的重绘或者重排, 这个时候我们就可以来使用节流不要让他过快的操作dom, 从而页面渲染起来也会更加流畅。  举个场景: dom元素的移动与拖">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T10:24:13.475Z">
+<meta property="og:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/whiteCat.jpg">
+<meta property="og:updated_time" content="2018-07-25T10:32:50.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;underscore系列之throttle&quot;&#39;">
-<meta name="twitter:description" content="underscore函数节流前言  在说underscore函数节流之前, 还是明确概念, 什么是函数节流。函数节流简单来说就是&amp;#39;开源节流&amp;#39;, 什么意思呢？就是减少某个函数调用的太频繁, 降低频次。一般来讲, 对于dom的频繁操作会引起浏览器的重绘或者重排, 这个时候我们就可以来使用节流不要让他过快的操作dom, 从而页面渲染起来也会更加流畅。  举个场景: dom元素的移动与拖">
+<meta name="twitter:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/whiteCat.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王西柚" type="application/atom+xml">
   
@@ -198,7 +197,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/whiteCat.jpg" alt="whiteCat"><br><a id="more"></a></p>
 <h2 id="underscore函数节流"><a href="#underscore函数节流" class="headerlink" title="underscore函数节流"></a>underscore函数节流</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p> 在说underscore函数节流之前, 还是明确概念, 什么是函数节流。函数节流简单来说就是<code>&#39;开源节流&#39;</code>, 什么意思呢？就是减少某个函数调用的太频繁, 降低频次。一般来讲, 对于dom的频繁操作会引起浏览器的重绘或者重排, 这个时候我们就可以来使用节流不要让他过快的操作dom, 从而页面渲染起来也会更加流畅。<br>  举个场景: dom元素的移动与拖拽, 我默认都做过这个功能。对于dom元素的频繁拖拽, 对于一些性能不太好的浏览器(说的就是你<code>IE</code>)会有很大的损耗, 这个时候我们就可以适当的去降低这个事件的调用频次。 当然调用的频次也要有一个合适的阈值。不然也会引出意外的问题。。。</p>
 </blockquote>
@@ -444,15 +443,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">git命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">git命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,11 +467,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">underscore.js</a>
+                <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">关于this</a>
+                <a href="javascript:void(0)" class="js-tag color4">underscore.js</a>
               </li>
              
               <li class="article-tag-list-item">
