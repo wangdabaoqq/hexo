@@ -8,7 +8,6 @@ tags:
 brief: "async"
 reward: true
 ---
-![qingse](https://wangdabaoqq.github.io/hexo-back-up/assets/img/qingse.jpg)
 <!--more-->
 ##  无耦合函数
 > 无耦合函数: 叫无耦合函数可能不太准确, 之所以叫无耦合函数, 我想的是把underscore函数方法没有在其他函数中调用的方法, 所以就先暂时叫无耦合函数. 如果这样理解我在订正.

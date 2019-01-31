@@ -9,7 +9,6 @@ tags:
 brief: "关于node的小机灵"
 reward: true
 ---
-![](https://wangdabaoqq.github.io/hexo-back-up/assets/img/436_1.jpg)
 <!--more-->
 最近看到
 序言

@@ -8,7 +8,6 @@ tags:
 brief: "async"
 reward: true
 ---
-![BlackCat](https://wangdabaoqq.github.io/hexo-back-up/assets/img/blackCat.jpg)
 <!--more-->
 ##    比较两个元素是否相同
   ###   前言  

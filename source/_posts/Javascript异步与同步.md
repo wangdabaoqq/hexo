@@ -9,7 +9,6 @@ tags:
 brief: "async"
 reward: true
 ---
-![冰棒](https://wangdabaoqq.github.io/hexo-back-up/assets/img/bing.jpg)
 <!--more-->
 ## Javascipt异步与同步
   > 我们都知道Javascript语言执行环境是`单线程`的,所谓`单线程`在程序执行时,按照前面先执行,后面再去执行的顺序,也就是所谓的先进先出。但是这样一来,如果某个任务的执行时间很久,那么后面的所有任务都要去等着前面任务执行完毕。可能会出现浏览器卡死。作为浏览器语言,Javascript的主要用途是与用户互动,以及操作DOM。

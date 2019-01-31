@@ -8,7 +8,6 @@ tags:
 brief: "async"
 reward: true
 ---
-![whiteCat](https://wangdabaoqq.github.io/hexo-back-up/assets/img/whiteCat.jpg)
 <!--more-->
 ##  underscore函数节流
 ### 前言
