@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://wangdabaoqq.github.io/hexo-back-up">
   <title>&#39;underscore系列之比较两个元素是否&quot;相同&quot;&#39; | 王西柚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="underscore.js">
+  <meta name="description" content="比较两个元素是否相同前言 之前就说过要读一下关于underscore.js的源码, 我就想先从某个函数开始读,  正好在github文章中(这里的文章我会在最后放上地址)提到了underscore中关于如何比较两个元素的是否相同, 我看完之后觉得很好玩。那么对于如何判断两个元素是否是相同呢？那么在什么程度上才算是相同, 举个例子: 1与1是相等的(当然他们前提是类型是一样的)那么1和 new N">
+<meta name="keywords" content="underscore.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;underscore系列之比较两个元素是否&quot;相同&quot;&#39;">
 <meta property="og:url" content="https://wangdabaoqq.github.io/hexo-back-up/2018/07/15/underscore系列之比较两个元素是否相同/index.html">
 <meta property="og:site_name" content="王西柚">
+<meta property="og:description" content="比较两个元素是否相同前言 之前就说过要读一下关于underscore.js的源码, 我就想先从某个函数开始读,  正好在github文章中(这里的文章我会在最后放上地址)提到了underscore中关于如何比较两个元素的是否相同, 我看完之后觉得很好玩。那么对于如何判断两个元素是否是相同呢？那么在什么程度上才算是相同, 举个例子: 1与1是相等的(当然他们前提是类型是一样的)那么1和 new N">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/blackCat.jpg">
-<meta property="og:updated_time" content="2018-07-30T01:57:20.156Z">
+<meta property="og:updated_time" content="2019-01-31T03:05:19.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;underscore系列之比较两个元素是否&quot;相同&quot;&#39;">
-<meta name="twitter:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/blackCat.jpg">
+<meta name="twitter:description" content="比较两个元素是否相同前言 之前就说过要读一下关于underscore.js的源码, 我就想先从某个函数开始读,  正好在github文章中(这里的文章我会在最后放上地址)提到了underscore中关于如何比较两个元素的是否相同, 我看完之后觉得很好玩。那么对于如何判断两个元素是否是相同呢？那么在什么程度上才算是相同, 举个例子: 1与1是相等的(当然他们前提是类型是一样的)那么1和 new N">
   
     <link rel="alternative" href="/atom.xml" title="王西柚" type="application/atom+xml">
   
@@ -197,7 +198,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/blackCat.jpg" alt="BlackCat"><br><a id="more"></a></p>
+        <a id="more"></a>
 <h2 id="比较两个元素是否相同"><a href="#比较两个元素是否相同" class="headerlink" title="比较两个元素是否相同"></a>比较两个元素是否相同</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>之前就说过要读一下关于<code>underscore.js</code>的源码, 我就想先从某个函数开始读,  正好在github文章中(这里的文章我会在最后放上地址)提到了<code>underscore</code>中关于如何比较两个元素的是否相同, 我看完之后觉得很好玩。那么对于如何判断两个元素是否是相同呢？那么在什么程度上才算是相同, 举个例子: <code>1与1是相等的(当然他们前提是类型是一样的)</code>那么<code>1</code>和 <code>new Number(1)</code>也应该相等。<br>  underscore中有这么一个函数<code>_.isEqual</code>对没错, 就是这个。接下来我会以自己的知识来解释下, 这个函数的涉及的知识点。 如果有解释的不好的点, 请大家给我留言我一定改正。话不多说直接开始。</p>
 </blockquote>
@@ -209,6 +210,7 @@ var _hmt = _hmt || [];
 <p>关于对于Number类型的判断就到这里结束了。</p>
 <h3 id="正则RegExp和String类型判断"><a href="#正则RegExp和String类型判断" class="headerlink" title="正则RegExp和String类型判断"></a>正则RegExp和String类型判断</h3><p>举个例子:<br><code>var a = /a/;</code><br><code>var b = new RegExp(&#39;a&#39;)</code><br><code>consolo.log(_.isEqual(s, a));</code><br>我们看下是如何处理这种情况的, 首先还是老样子判断属于什么类型, 发现是<code>RegExp</code>进入return 转换为字符串进行比较-也就是a与a进行比较为true。<br><code>String</code>也一样,<br><code>var a = new String(&#39;s&#39;);</code><br><code>var b = new String(&#39;s&#39;);</code><br>同上。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">'[object RegExp]'</span>:</span><br><span class="line">  <span class="comment">// RegExps are coerced to strings for comparison (Note: '' + /a/i === '/a/i')</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">'[object String]'</span>:</span><br><span class="line">  <span class="comment">// Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is</span></span><br><span class="line">  <span class="comment">// equivalent to `new String("5")`.</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">''</span> + a === <span class="string">''</span> + b;</span><br></pre></td></tr></table></figure></p>
 <h3 id="Date与Boolean类型判断"><a href="#Date与Boolean类型判断" class="headerlink" title="Date与Boolean类型判断"></a>Date与Boolean类型判断</h3><p>举个栗子:<br>还是根据数据类型选择进入:<br><code>var a = new Date(1);</code><br><code>var b = 1</code><br>这样进行判断就会发现通过使用<code>+new Date()</code>或者<code>+new Date</code>转换成1。这样就会发现返回true;<br>当然我觉得布尔类型也是如此,<br><code>var a = true;</code><br><code>var b = new Boolean(false);</code><br>a为true, 我们也知道true == 1, true为布尔类型进入进行隐士类型转换, b也是如此, 如果相等返回true, 否则反之。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">'[object Date]'</span>:</span><br><span class="line"><span class="keyword">case</span> <span class="string">'[object Boolean]'</span>:</span><br><span class="line">  <span class="comment">// Coerce dates and booleans to numeric primitive values. Dates are compared by their</span></span><br><span class="line">  <span class="comment">// millisecond representations. Note that invalid dates with millisecond representations</span></span><br><span class="line">  <span class="comment">// of `NaN` are not equivalent.</span></span><br><span class="line">  <span class="keyword">return</span> +a === +b;</span><br></pre></td></tr></table></figure></p>
+<h3 id="数组与对象类型比较"><a href="#数组与对象类型比较" class="headerlink" title="数组与对象类型比较"></a>数组与对象类型比较</h3><p>关于数组的类型比较稍微比较麻烦, 因为涉及到数组有包括对象的情况。同理, 也有可能对象里面有数组的情况。还是老样子判断是否是<code>[&#39;object Array&#39;]</code>;</p>
 <hr>
 <p>未完待续</p>
 <hr>
@@ -313,7 +315,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -411,14 +413,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -435,18 +429,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -455,11 +437,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,7 +453,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,15 +461,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,7 +485,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

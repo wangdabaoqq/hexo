@@ -199,8 +199,20 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/lancat.jpg" alt="lanCat"><br>
-        
+        <a id="more"></a>
+<h2 id="年中总结"><a href="#年中总结" class="headerlink" title="年中总结"></a>年中总结</h2><blockquote>
+<p> 距离上一个总结已经半年过去了, 上次的总结对于自己的要求和目标我还历历在目。说说我还在坚持的以及没有坚持到的, 看书这件事我今年开始了坚持, 因为我买了<code>kindle</code>, 目前<code>javascript</code>高程我看了80%, 但是有些知识点我还是很模糊, 我觉得在看的同时, 对于一些不太明白, 不太清晰的代码。一定要去敲下好吗, 我求你了。 因为我在看的时候有些没有敲, 相对与敲过代码的而言, 记忆薄弱了很多。<br>看了曾探写的<code>javascript设计模式与开发实践</code>, 这本书我没有看完, 但我受益匪浅, 忽然觉得js这门语言很好玩。等我觉得有些概念了, 我会去写关于这本书的一些设计模式的自己看法与见解。对于自己而言有时候还是会很焦躁, 感觉会的还是太少了。<br>对于博客我真的越来越懒, 更新频率越来越低下。说的是一个星期更新一篇, 拖到了一个月更新一次甚至更久。 健身方面的话, 中间另个一个健身房到期了, 又找了个便宜的。离得稍微近一点的。坚持锻炼吧。。。<br>说好的, 看一看<code>vue</code>源码的我也没看。我甚至在想我能不能先看<code>underscore</code>或者<code>jquery</code>的源码。我有时候在想是不是可以让自己适当的停一下,慢一点, 给我一点缓冲的时间给自己充充电。<br>我时常会感觉到自己的无力, 尤其对于在技术上, 本身前端技术的更新换代很快, 可能有时候稍微走了下神, 就会发现自己已经跟不上了。<br>对于做技术而言, 一定要保持初心, 对于技术一定要有求知欲, 这方面我就做的很不好。希望自己保持初心吧。</p>
+</blockquote>
+<h2 id="下半年计划"><a href="#下半年计划" class="headerlink" title="下半年计划"></a>下半年计划</h2><p>  下半年希望自己初心依旧。</p>
+<ul>
+<li>读一遍<code>underscore.js</code>源码。</li>
+<li><code>vue</code>源码看看。</li>
+<li><code>多学</code>, <code>多看</code>, <code>多听</code>。</li>
+<li>想多看看关于<code>css</code>的一些书籍。 </li>
+<li>可以的话, 学学<code>英语</code>。</li>
+</ul>
+<p>心太小, 不想装太多, 太累了。</p>
+
       
 
       
@@ -274,8 +286,17 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/cat.jpg" alt="Cat"><br>
-        
+        <a id="more"></a>
+<h2 id="我所知道的apply与call"><a href="#我所知道的apply与call" class="headerlink" title="我所知道的apply与call"></a>我所知道的apply与call</h2><blockquote>
+<p>在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于<code>js儿子-call与apply</code>的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过我的角度去说下我对于apply和call的看法. 其实在刚刚认识call或者apply的时候, 我在想这两个货是到底干嘛的, 在没有认识他们之前, 我也完成了某些功能的开发呀, 这两个货色的作用到底是什么, 我觉得我有必要去好好了解下. </p>
+</blockquote>
+<h2 id="开始认识call与apply"><a href="#开始认识call与apply" class="headerlink" title="开始认识call与apply"></a>开始认识call与apply</h2><p>  我打开了熟悉的<code>mdn</code>恩, 他好像挂了. 算了我用手机打开吧. 其中描述中这样的说道: 可以让call或者apply中的对象调用当前<br>  对象所有的function. 你可以使用call()来实现继承: 写一个方法, 然后让另一个新的对象来继承它(而不是在新对象中再写一次这个方法).<br>  难道是这样:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  name: <span class="string">'wangdaye'</span>,</span><br><span class="line">  showName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">  name: <span class="string">'liayi'</span></span><br><span class="line">&#125;</span><br><span class="line">foo.showName.call(bar);</span><br></pre></td></tr></table></figure></p>
+<p>  我觉得这个栗子(栗子是我抄的_-_), 想表达的其实和上面描述里面提到的, 其实是一回事, 我觉得是这样, <code>bar</code>这个人想看下自己家的房产证名字写的是谁的, 但是没有梯子, 因为房产证放在需要梯子才能够到的地方, 所以他问了邻居foo, 嘿我用下你家梯子(showNmae方法), 行用吧, 然后就看到了自己的房产证是”老婆的名字”. 大概的的意思是, bar这个家伙没有自己方法, 但是他又想用, 怎么办那就借用了foo的方法. 就是这样. </p>
+<h2 id="apply与apply的异同"><a href="#apply与apply的异同" class="headerlink" title="apply与apply的异同"></a>apply与apply的异同</h2><p>  同: <code>apply</code>与<code>call</code> 方法的第一个参数是在运行指定的<code>this</code>值. 需要注意的是, 指定的<code>this</code>值并不一定是该函数执行时真正的<code>this</code>值, 如果这个函数的处于非严格模式下, 则指定为<code>null</code>与<code>undefined</code>的<code>this</code>值会自动指向全局对象(浏览器中就是<code>window</code>对象), 同时值为原始值(数字, 字符串, 布尔值)的<code>this</code>会指向该原始值的自动包装对象.<br>  关于这句话, 我再举个栗子:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,array)</span><br></pre></td></tr></table></figure></p>
+<p>  我在稍微说下: 这个栗子就很好的解释了上面提到的如果<code>apply</code>或者<code>call</code>的第一个参数, 我传递了<code>null</code>或者<code>undefined</code>那么这个时候<code>this</code>的指的就是上面提到的<code>window</code>, 而<code>window</code>里面有<code>Math.max</code>.<br>  再举个栗子:<br>  异: <code>call</code>参数是这样的形式(this, num1, num2, ….)<br>      <code>apply</code>参数是这样的形式(this, []) </p>
+<h2 id="未完待续。。。。。。"><a href="#未完待续。。。。。。" class="headerlink" title="未完待续。。。。。。"></a>未完待续。。。。。。</h2><p>—————————————–更新———————————————————–</p>
+<h2 id="this与bind"><a href="#this与bind" class="headerlink" title="this与bind"></a>this与bind</h2><p>  我觉得既然聊到了<code>apply</code>与<code>call</code>就多聊一些, 加上<code>this</code>与<code>bind</code>。要说明this到底指向谁, 我在掘金上看到一篇关于this指向的文章, 提到了<code>this永远指向最后调用它的那个对象</code>。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'wangda'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aa</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"wanger"</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(name);  <span class="comment">//  wangda</span></span><br><span class="line">&#125;</span><br><span class="line">aa();</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -353,8 +374,43 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/chrome.jpg" alt=""></p>
-        
+        <a id="more"></a>
+<h2 id="Chrome扩展程序"><a href="#Chrome扩展程序" class="headerlink" title="Chrome扩展程序"></a>Chrome扩展程序</h2><blockquote>
+<p>一直想着做一期关于chrome扩展程序的文章,索性就做了一期。其中的一些扩展程序我会根据自己用过的喜爱程序与相关推荐来做排名, 因为<br>  其中有我没有用过的扩展程序。当然所有的相关程序都是需要进行翻墙来进行下载的。如果有需要可以联系我, 我会下载下来提供给你。</p>
+</blockquote>
+<h2 id="自用扩展程序"><a href="#自用扩展程序" class="headerlink" title="自用扩展程序"></a>自用扩展程序</h2><ul>
+<li>Adblock Plus</li>
+<li>JSON Viewer</li>
+<li>Momentum</li>
+<li>Noisli</li>
+<li>One Tab</li>
+<li>Postman</li>
+<li>Stylish</li>
+<li>Tampermonkey</li>
+<li>uBlock Origin (关闭)</li>
+<li>UI Stack</li>
+<li>Vue.js devtools</li>
+<li>WEB前端助手(FeHelper)</li>
+<li>一键管理所有扩展</li>
+<li><p>简悦 - SimpRead</p>
+<p>目前就是这么多。</p>
+<h2 id="扩展程序排行榜"><a href="#扩展程序排行榜" class="headerlink" title="扩展程序排行榜"></a>扩展程序排行榜</h2></li>
+<li><a href="https://chrome.google.com/webstore/search/Adblock%20Plus?hl=zh-CN" target="_blank" rel="noopener">Adblock Plus</a><br><code>Adblock</code>是广告拦截软件。  目前chrome下载量: <code>161440</code>  推荐指数: <code>5颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/Tampermonkey?hl=zh-CN" target="_blank" rel="noopener">Tampermonkey</a><br><code>油猴脚本</code>是非常强大的扩展程序, 具体的用处建议自己去发掘下。说下令人感兴趣的如<code>破解VIP会员视频集合</code>。当然不是万能的有时候解析不出来视频, 而且不是清晰版, 其他还是可以的。<br>目前chrome下载量: <code>55276</code> 推荐指数 <code>4颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/Stylish?hl=zh-CN" target="_blank" rel="noopener">Stylish</a><br>强烈安利<code>Stylish</code>他的作用是更改网页主题如百度-google:<br><img src="https://qn.tyty.me/baidu.png" alt="百度"><br><img src="https://qn.tyty.me/google.png" alt="谷歌"><br>目前chrome下载量: <code>15896</code> 推荐指数: <code>4颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/Momentum?hl=zh-CN" target="_blank" rel="noopener">Momentum</a> <code>Momentum</code>是新的标签页面,但不单单是标签页,里面还有很多隐藏的彩蛋。自己去发现吧。图片特别特别好看。<br><img src="https://qn.tyty.me/im.png" alt="好看"><br>怎么样,还可以吧。这个插件我的使用率不是很高。所以分数不是很高。<br>目前chrome下载量: <code>12601</code> 推荐指数: <code>3颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/Noisli?hl=zh-CN" target="_blank" rel="noopener">Noisli</a><br><code>Noisli</code>是一款很小清新的插件。不知道大家喜不喜欢下雨打雷看书的声音。那感觉(肾宝味道好极了)棒极了。可以自己配置一款自己喜欢的, 里面的声音大概10多种。随心所欲的去配置吧。<br>此时的我就走在下着雨的森林,行走。除此以外, 好像没有别的用处。<br><img src="https://qn.tyty.me/qing.png" alt="小清新"><br>目前chrome下载量: <code>687</code> 推荐指数: <code>3颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/One%20Tab?hl=zh-CN" target="_blank" rel="noopener">One Tab</a> <code>One Tab</code>是一款与众不同的插件, 不知道你有没有烦恼过打开了’无数’的网站<br>但就是不想关闭, 因为你只要关闭, 接下来再想看的话, 就要到历史记录里面去翻找(说多了都是泪啊)此处为本人脑补: 可能有的同学会说,我们不用翻找可以在历史记录进行搜索。非常好，<br>同学你叫什么名字, 我叫<code>陈独秀</code>。陈同学你坐下。。。额 对, 用了这个插件我们可以十分顺畅,可以把所有的页面都集中在一个标签页上。<br><img src="https://qn.tyty.me/tab.png" alt="tab"><br>目前chrome下载量: <code>10312</code> 推荐指数: <code>4颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/JSON%20Viewer?hl=zh-CN" target="_blank" rel="noopener">JSON Viewer</a><br><code>JSON Viewer</code> 接口格式化工具,我觉得做<code>web前端</code>工作的应该人手一个, 看到没有安装这个插件的同学, 马上安利。瞬间大神,额。。。。我呸。<br><img src="https://qn.tyty.me/apibefore.png" alt="before"><br><img src="https://qn.tyty.me/apiafter.png" alt="after"><br>目前chrome下载量: <code>637</code> 推荐指数: <code>4颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/Postman?hl=zh-CN" target="_blank" rel="noopener">Postman</a><br><code>Postman</code>是接口调试工具。恩对。反正挺好用的。<br>目前chrome下载量: <code>652</code> 推荐指数<code>3颗星</code></li>
+<li><a href="https://chrome.google.com/webstore/search/WEB%E5%89%8D%E7%AB%AF%E5%8A%A9%E6%89%8B(FeHelper" target="_blank" rel="noopener">WEB前端助手(FeHelper)</a>?hl=zh-CN<br>)<code>FeHelper</code>也是很不错的一款插件,它的功能比<code>JSON Viewer</code>会更多一些。随便说下,算了不说了。但是我把它关了。<code>好像是因为它长的不好看?</code><br>目前chrome下载量: <code>157</code> 推荐指数: <code>3颗星</code>  </li>
+<li><a href="https://chrome.google.com/webstore/search/%E4%B8%80%E9%94%AE%E7%AE%A1%E7%90%86%E6%89%80%E6%9C%89%E6%89%A9%E5%B1%95?hl=zh-CN" target="_blank" rel="noopener">一键管理所有扩展</a><br><code>一键管理</code>插件真的对我来说作用不大。前提是如果你装了很多扩展插件,都是大部分都是摆着装13(麻烦帮我消下音), 这个时候可能在使用浏览器的过程中,可能会出现卡顿的现象。<br>目前chrome下载量: <code>183</code> 推荐指数 <code>2颗星</code>  </li>
+</ul>
+<p>  这一期就这样吧。如果你们需要某一类的扩展程序, 比如<code>打折</code>或者<code>划词翻译</code>等等系列的。可以留言给我。我会搜集更多好玩, 实用的插件给你们。<br>  我也会继续更新上面的插件,目前就想到这么多。</p>
+<h2 id="相应网站"><a href="#相应网站" class="headerlink" title="相应网站"></a>相应网站</h2><ul>
+<li><a href="https://www.zhihu.com/topic/19614065/top-answers" target="_blank" rel="noopener">更多知乎相应插件</a></li>
+</ul>
+
       
 
       
@@ -428,8 +484,35 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/bing.jpg" alt="冰棒"><br>
-        
+        <a id="more"></a>
+<h2 id="Javascipt异步与同步"><a href="#Javascipt异步与同步" class="headerlink" title="Javascipt异步与同步"></a>Javascipt异步与同步</h2><blockquote>
+<p>我们都知道Javascript语言执行环境是<code>单线程</code>的,所谓<code>单线程</code>在程序执行时,按照前面先执行,后面再去执行的顺序,也就是所谓的先进先出。但是这样一来,如果某个任务的执行时间很久,那么后面的所有任务都要去等着前面任务执行完毕。可能会出现浏览器卡死。作为浏览器语言,Javascript的主要用途是与用户互动,以及操作DOM。</p>
+</blockquote>
+<p>  在开始之前我还是要明确下何为异步,何为同步。<br>  举个栗子：<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'同步1'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'同步2'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>  按照的JavaScript语言执行顺序,最终的打印顺序为<code>同步1</code>然后<code>同步2</code>。<br>  栗子2：<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'完成'</span>)</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'结束'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>  我们都知道setTimeout是起到延迟器的作用,那么这里他的执行打印顺序为结束-完成。<br>  这里可能有些迷惑,setTimeout不是0吗?为什么会是这样的打印结果。这里涉及到了一个关键词<br>  <code>Event Loop</code>关于这个关键词目前我太不适于去讲。以后单开一篇文章,单独去讲。<br>  这里我简单说下原理,我理解是这样的,javascript是单线程也是主线程,当出现异步操作时,它会等待主线程完成。然后进入。那么这时要等待执行console.log(‘结束’),然后再去执行setTimeout。  </p>
+<p>  我在使用jquery ajax异步请求时面临到了这样一个问题：<br>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ccc = $(<span class="string">"#content"</span>)</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">'https://cnodejs.org/api/v1/topics'</span>,</span><br><span class="line">  type: <span class="string">'GET'</span>,</span><br><span class="line">  dataType: <span class="string">'json'</span>,</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    ccc.html(res.data[<span class="number">0</span>].content);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> con = $(<span class="string">"#con"</span>)</span><br><span class="line">con.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  这种情况下我想给返回的数据里的某个id为con的添加点击事件,这种情况下肯定是会报错了,原因是<code>jquery-ajax</code>默认是异步的,哪这种情况下当执行到获取dom元素时,是获取不到的,因为ajax的没有执行。<br>  我想到的解决办法是:</p>
+<ul>
+<li><p>改为同步(把<code>async</code>: <code>false</code>)这样的话,就会按照顺序执行,从而获取到id为con的dom元素。可是这样又会面临一个问题: <code>阻塞</code>,如果返回的数据量很大的情况下,就会一直等待数据的返回,导致页面的卡顿。 哪有没有即是异步又可以获取dom的元素的呢。下面说第二种方法:</p>
+</li>
+<li><p>jquery中有如下事件可以实现:</p>
+<ul>
+<li>on</li>
+<li>delegate</li>
+<li>bind</li>
+<li>live(最新jquery已删除)<h5 id="其中只测试了bind与on事件-如有其他需要请自行测试"><a href="#其中只测试了bind与on事件-如有其他需要请自行测试" class="headerlink" title="其中只测试了bind与on事件(如有其他需要请自行测试)"></a>其中只测试了bind与on事件(如有其他需要请自行测试)</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#content'</span>).on(<span class="string">'click'</span>,<span class="string">'#con'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'成功获取#con'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>如果我不想使用jquey的on或者其他事件,我可以实现吗？答案是当然可以。我查了下jquery的on的实现,提到了两个关键词<code>事件代理</code>或<code>事件委托</code>。当然上面的事件用的是事件委托。关于事件委托我简单说下:<br>事件委托就是利用了事件冒泡的原理。举个栗子:  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"ul1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"ul1"</span>);</span><br><span class="line">  oUl.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">var</span> target = ev.target || ev.srcElement;</span><br><span class="line">    <span class="keyword">if</span> (target.nodeName.toLowerCase() == <span class="string">'li'</span>) &#123;</span><br><span class="line">      alert(target.innerHTML);  </span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单的就是这样,我会再开一篇关于事件的文章。更系统的说下关于js的事件。<br>其实关于异步我觉得更多的关注点还是要放在Event Loop上。如果你能够明白Event Loop<br>那么异步也就不在话下。<br>这篇文章就到这了。</p>
+</li>
+</ul>
+
       
 
       
@@ -507,8 +590,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/1234.jpg" alt="123"><br>
-        
+        <a id="more"></a>
+<h2 id="mousewheel-DOMMouseScroll"><a href="#mousewheel-DOMMouseScroll" class="headerlink" title="mousewheel-DOMMouseScroll"></a>mousewheel-DOMMouseScroll</h2><p>  最近在写vue的项目中涉及到了鼠标滚轮事件,之前没有用到过,所以踩了踩坑,想了想就写了一篇关于滚轮事件的文章。</p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>  起先我是不知道关于滚轮事件是有兼容的,当时我只写了@mousewheel一种方法,满心欢喜去迎接马上到来的幸福生活。<br>  先测了测chrome,没有问题完美实现。接下来是firefox,哎没有反应,我想了下肯定是姿势不对,再来一遍,漂亮,还是<br>  没有反应,这个时候我想到了可能是有兼容,百度了下发现确实是有兼容,原来兼容分为两种,一种是firefox,一种是其他。<br>  其他用到的是<code>mousewheel</code>而firefox用的是<code>DOMMouseScroll</code>。<br>  下面是用到的部分代码<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">handleScroll (e) &#123;</span><br><span class="line">  <span class="keyword">let</span> type = e.type;</span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'DOMMouseScroll'</span> || type === <span class="string">'mousewheel'</span>) &#123;</span><br><span class="line">    eventDelta = (e.wheelDelta) ? e.wheelDelta : -(e.detail || <span class="number">0</span>) * <span class="number">40</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (eventDelta &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="built_in">Math</span>.min(<span class="number">0</span>, <span class="keyword">this</span>.left + eventDelta);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ($containerWidth - padding &lt; $wrapperWidth) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.left &lt; -($wrapperWidth - $containerWidth + padding)) &#123;</span><br><span class="line">        <span class="keyword">this</span>.left = <span class="keyword">this</span>.left;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.left = <span class="built_in">Math</span>.max(<span class="keyword">this</span>.left + eventDelta, $containerWidth - $wrapperWidth - padding);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.left = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  我要说的是其他的滚动是根据<code>e.wheelDelta</code>作为判断条件,其中向上滚动是120,而向下滚动则取反是-120。而firefox判断滚轮方向<br>  <code>e.detail</code>,向上判断是-3,向上则取反为3。</p>
+<p>  这个时间祭出大杀器推荐大家张鑫旭的博客关于鼠标滚动更好的总结。<br>  <a href="http://www.zhangxinxu.com/wordpress/2013/04/js-mousewheel-dommousescroll-event/" target="_blank" rel="noopener">张鑫旭-关于鼠标滚轮事件</a></p>
+
       
 
       
@@ -576,7 +663,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -674,14 +761,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -698,18 +777,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -718,11 +785,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,7 +801,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,15 +809,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -758,7 +833,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

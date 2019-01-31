@@ -199,8 +199,29 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/qingCat.jpg" alt=""><br>
-        
+        <a id="more"></a>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ob = &#123;</span><br><span class="line">  foo: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line">obj.foo();  <span class="comment">//  打印的this为obj</span></span><br><span class="line">bar();  <span class="comment">//  打印的this为window</span></span><br></pre></td></tr></table></figure>
+<p>  请解释最后两行函数的值为什么不一样。</p>
+<p>  初学者关于this的理解一直很模糊。今天这篇文章就要一次讲清楚了。<br>  而且这个解释, 你在别的地方看不到。看懂这篇文章, 所有关于this的面试题, 都是小菜。</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>  首先需要从函数的调用开始讲起。<br>  JS(ES5)里面有这种函数调用形式:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func(p1, p2);</span><br><span class="line">obj.child.methods(p1, p2);</span><br><span class="line">func.call(context, p1, p2);</span><br></pre></td></tr></table></figure></p>
+<p>  一般, 初学者都知道前两种形式, 而且认为前两种形式优于第三种形式。<br>  从看到这篇文章起, 你一定要记住, 第三种调用形式, 才是正常调用形式:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func.call(context, p1, p2);</span><br></pre></td></tr></table></figure></p>
+<p>  其他两种形式都是语法糖, 可以等价地变为call形式:</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func(p1, p2) 等价于</span><br><span class="line">func.call(<span class="literal">undefined</span>, p1, p2)</span><br><span class="line">obj.child.method(p1, p2) 等价于</span><br><span class="line">obj.child.method.call(obj.child, p1, p2);</span><br></pre></td></tr></table></figure>
+<p>  请记下来。(我们称次代码为转换代码, 方便下文引用)<br>  至此我们的函数调用只有一种形式:<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func.call(context, p1, p2)</span><br></pre></td></tr></table></figure></p>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>this, 就是上面代码中的context。就这么简单。<br>this是你call一个函数时的context, 由于你从来不用call形式的函数调用,所以你一直不知道。</p>
+<h3 id="先看func-p1-p2-中的this如何确定"><a href="#先看func-p1-p2-中的this如何确定" class="headerlink" title="先看func(p1, p2)中的this如何确定:"></a>先看func(p1, p2)中的this如何确定:</h3><p>  当你写下面代码时<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">func();</span><br></pre></td></tr></table></figure></p>
+<p>等价于<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">func.call(<span class="literal">undefined</span>);</span><br></pre></td></tr></table></figure></p>
+<p>按理说打印出来的this应该就是undefined了吧, 但是浏览器里有一条规则:<br>如果你传的context就null或者undefined, 那么window对象就是默认的context(严格模式下默认context是undefined)<br>因此上面的打印结果是window。<br>如果你希望这里的this不是window, 很简单:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span>.<span class="title">call</span><span class="params">(obj)</span></span>  <span class="comment">//  那么里面的this就是obj对象了</span></span><br></pre></td></tr></table></figure></p>
+<p>再看obj.child.method(p1, p2)的this如何确定<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.foo()</span><br></pre></td></tr></table></figure></p>
+<p>按照转换代码, 我们将obj.foo()转换为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj<span class="selector-class">.foo</span><span class="selector-class">.call</span>(obj)</span><br></pre></td></tr></table></figure></p>
+<p>好了, this就是obj。</p>
+<p>回到题目<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = ob.foo</span><br><span class="line">obj.foo(); 转换为obj.foo.call(obj) <span class="keyword">this</span>就是obj</span><br><span class="line">bar() 转换为bar.call() 不传默认为<span class="literal">undefined</span> 所以指向<span class="built_in">window</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>this 就是你 call 一个函数时，传入的 context。</li>
+<li>如果你的函数调用形式不是 call 形式，请按照「转换代码」将其转换为 call 形式。</li>
+</ol>
+<p>转载自<a href="https://juejin.im/post/5857dad461ff4b00686cf97a" target="_blank" rel="noopener">掘金</a><br>原作者<code>方应杭在饥人谷</code></p>
+
       
 
       
@@ -274,8 +295,21 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/440H.jpg" alt=""></p>
-        
+        <a id="more"></a>
+<h2 id="2017年度总结"><a href="#2017年度总结" class="headerlink" title="2017年度总结"></a>2017年度总结</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>2017年7月我从学校毕业出来,开始正式的进入社会,对一切充满了未知。当时我没有第一时间去选择找工作而是觉得当时的自己对于自己的认知还不是特别的明确,当然其中包括我对于自己要选择工作的技能。我觉得以我当时的能力还不足以去让自己能够找到心仪的工作,所以我当时选择了回家去闭关静修。我到了9月初选择了去找工作,短短两个月的时间,讲道理在我闭关的时间里没有我想象当中的那么的辛苦,当然我还是要去感谢当时自己的两个月的努力。可能努力的结果没有达到我现在的要求。但是,还是让我找到了工作。</p>
+</blockquote>
+<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>  在公司工作了将近半年把,公司对于技术方面还是非常新颖的,一些相对来说比较久的相关采用的是angular.js,对于当时来说用的技术还是比较新的。之后的一些项目也是采用了比较火的框架<code>Vue</code>,因为之前在闭关的时候写了一个关于Vue的项目,所以对于上手还是相对比较轻松的。<br>  再到后来重构了某个比较大的项目,采用了Vue。我想了想对于踩坑还是比较多的,差点逼死我。当然对于技术的提升还是蛮大的。反正就是慢慢来吧。</p>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>把javascipt高级程序设计重新再看一遍。</li>
+<li>把vue源码读一遍,理解相关部分。</li>
+<li>博客每个星期更新一次。</li>
+<li>github更新与打卡的记录更多一些。</li>
+<li>了解并熟悉Http。</li>
+<li>健身。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>  总的来说这一年感慨还蛮多的,加上自己是一个比较多愁善感的人,很容易被周围的情绪影响。所以更多的时间我反而是在做自己想做的事情。没有更多去和朋友多去接触。家里人更多的是让我去和朋友多去接触,扩展人际关系。还有就是家里人也着急起来我的婚姻大事,我想说的是(婚姻大事我从没有放下),但更多的我还是在说再等等。<br>  2018年努力努力再努力。<br>  加油。<br>  先到这,想到再更。</p>
+
       
 
       
@@ -509,8 +543,41 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://qn.tyty.me/444H.jpg" alt=""><br>
-        
+        <a id="more"></a> 
+<h2 id="Javascipt数组去重"><a href="#Javascipt数组去重" class="headerlink" title="Javascipt数组去重"></a>Javascipt数组去重</h2><h3 id="方法一-双循环（时间复杂度比较高-性能一般。）"><a href="#方法一-双循环（时间复杂度比较高-性能一般。）" class="headerlink" title="方法一: 双循环（时间复杂度比较高, 性能一般。）"></a>方法一: 双循环（时间复杂度比较高, 性能一般。）</h3><h4 id="测试用例一"><a href="#测试用例一" class="headerlink" title="测试用例一"></a>测试用例一</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">var</span> isRepeat;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    isPepeat = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// console.log(arr[i], 'arr[i]');</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="comment">// console.log(arr[j], '111');</span></span><br><span class="line">      <span class="built_in">console</span>.log(arr[i], <span class="string">'arr[i]'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(arr[j], <span class="string">'arr[j]'</span>);         </span><br><span class="line">      <span class="keyword">if</span> (arr[i] === arr[j]) &#123;</span><br><span class="line">        isPepeat = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!isPepeat) &#123;</span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [2, 3, 1]</span></span><br></pre></td></tr></table></figure>
+<h4 id="测试用例二"><a href="#测试用例二" class="headerlink" title="测试用例二"></a>测试用例二</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="comment">// console.log(j);</span></span><br><span class="line">      <span class="keyword">if</span> (arr[i] === arr[j]) &#123;   </span><br><span class="line">        j = ++i;  <span class="comment">//  不理解这里的意思,恕我愚钝</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(arr[i]);</span></span><br><span class="line">    newArr.push(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [2, 3, 1]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: j = ++i;等价于 j = j + 1; i = i + 1；<br>       整体思路就是如果是重复元素,则跳过重复元素,不对其进行push操作。</p>
+<h3 id="方法二-Array-prototype-indexOf"><a href="#方法二-Array-prototype-indexOf" class="headerlink" title="方法二: Array.prototype.indexOf()"></a>方法二: Array.prototype.indexOf()</h3><h4 id="测试用例三"><a href="#测试用例三" class="headerlink" title="测试用例三"></a>测试用例三</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(item);</span></span><br><span class="line">    <span class="built_in">console</span>.log(index);</span><br><span class="line">    <span class="built_in">console</span>.log(arr.indexOf(item));</span><br><span class="line">    <span class="comment">//  其中indexOf代表着item里面第一次出现的位置,</span></span><br><span class="line">    <span class="comment">//  这样的话返回的也是所有第一次出现的元素。恩,对,没错。</span></span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: var new_array = arr.filter(callback, [thisArg])<br>       callback: 用来测试数组的每个元素的函数,调用时使用参数(element,index, array)。<br>       返回true表示保留该元素(通过测试),false则不保留。<br>       thiArg: 可选。执行callback时的用于this的值。<br>  <strong>整体思路就是索引不是第一个索引,说明是重复值。</strong></p>
+<p>  详情见:<br>  <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener">MDN-filter</a></p>
+<h4 id="测试用例四"><a href="#测试用例四" class="headerlink" title="测试用例四"></a>测试用例四</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">element</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(newArr);</span><br><span class="line">    <span class="built_in">console</span>.log(newArr.indexOf(element));</span><br><span class="line">    <span class="keyword">if</span> (newArr.indexOf(element) === <span class="number">-1</span>) &#123;</span><br><span class="line">      newArr.push(element);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: indexOf在这里代表着,当newArr里没有这个元素所以返回了-1,<br>       而当newArr没有重复元素时,indexOf返回的都是-1。<br>  <strong>整体思路为当没有没有重复元素返回-1,满足条件成立返回出去</strong></p>
+<p>  详情见:<br>  <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf" target="_blank" rel="noopener">MDN-indexOf</a></p>
+<h3 id="方法三-Array-prototype-sort"><a href="#方法三-Array-prototype-sort" class="headerlink" title="方法三: Array.prototype.sort()"></a>方法三: Array.prototype.sort()</h3><h4 id="测试用例五"><a href="#测试用例五" class="headerlink" title="测试用例五"></a>测试用例五</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  arr.sort();</span><br><span class="line">  <span class="built_in">console</span>.log(arr);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] !== arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line">unique(arr); <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: 原理就是按照排序的方式进行排序如[1, 2, 3, 1, 3]排序过后<br>       就会形成[1, 1, 2, 3, 3]。当然这里有一个问题是sort对于其他<br>       比如说[1, 11, 22, 18]就不会按照你设想的去排序,它会排序为<br>       [1, 11, 18, 22]。然后就是进行判断相邻的(相邻的比如1, 1)<br>       如果不相等就push然后返回。恩完美。</p>
+<p>  详情见:<br>  <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank" rel="noopener">MDN-sort</a></p>
+<h4 id="测试用例六"><a href="#测试用例六" class="headerlink" title="测试用例六"></a>测试用例六</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  arr.sort();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="comment">// console.log(arr[i]);</span></span><br><span class="line">    <span class="built_in">console</span>.log(arr[i], newArr[newArr.length - <span class="number">1</span>]);</span><br><span class="line">    <span class="comment">// console.log(arr[i]);              </span></span><br><span class="line">    <span class="keyword">if</span> (arr[i] !== newArr[newArr.length - <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="comment">// console.log(arr[i]);                    </span></span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line">unique(arr);  <span class="comment">//  [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: 这里利用到的是与数组的进行比对,如果匹配不成功则push。<br>       这里的点是进行第一次比对时因为数组为空那么它的长度-1就是undefined，<br>       然后push了1进入。第二次比对发现长度-1与arr[i]匹配成功,条件不满足。<br>       进行第三次匹配,以此类推。</p>
+<h3 id="方法四-使用对象key来去重"><a href="#方法四-使用对象key来去重" class="headerlink" title="方法四: 使用对象key来去重"></a>方法四: 使用对象key来去重</h3><h4 id="测试用例7"><a href="#测试用例7" class="headerlink" title="测试用例7"></a>测试用例7</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">var</span> tmp = &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(tmp);</span><br><span class="line">    <span class="keyword">if</span> (!tmp[arr[i]]) &#123;     </span><br><span class="line">      <span class="comment">// console.log(tmp[arr[i]]);</span></span><br><span class="line">      tmp[arr[i]] = <span class="number">1</span>;</span><br><span class="line">      <span class="comment">// console.log(tmp);</span></span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line">unique(arr);</span><br></pre></td></tr></table></figure>
+<p>  tip: 这里利用了对象(tmp)的key不可以重复的特性进行去重。<br>       当进行匹配的时候默认情况下,是不存在tmp[arr[i]]的,<br>       符合条件进行复制与push。循环往复。当有重复的元素时,<br>       条件不满足。结束。</p>
+<p>  注意问题:<br>    //  这里我不太理解,希望有明白的能给解释下。</p>
+<pre><code>- 无法区分隐式类型转换成字符后一样的值, 比如1和&apos;1&apos;。
+- 无法处理复杂数据类型, 比如对象(因为对象作为key会变成[object Object])。
+- 特殊数据, 比如&apos;_proto_&apos;会挂掉,因为tmp对象的_proto_属性无法被重写。
+</code></pre><p>  解决1, 3: 可以为对象的key增加一个类型,或者将类型放到对象的value中来解决:</p>
+<h4 id="测试用例8"><a href="#测试用例8" class="headerlink" title="测试用例8"></a>测试用例8</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">var</span> tmp = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> tmpKey;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">      tmpKey = <span class="keyword">typeof</span> arr[i] + arr[i];</span><br><span class="line"></span><br><span class="line">      <span class="built_in">console</span>.log(tmpKey); </span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(!tmp[tmpKey])&#123;</span><br><span class="line">          tmp[tmpKey] = <span class="number">1</span>;</span><br><span class="line">          newArr.push(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [1,2,3]</span></span><br></pre></td></tr></table></figure>
+<p>  <img src="https://qn.tyty.me/2018-01-12%2011-56-14%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="text"><br>  这里换成了 var arr = [{xiaoming:23,xiaoqing:45},{xiaoming:24,xiaoqing:45}];<br>  <img src="https://qn.tyty.me/2018-01-12%2011-51-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="text"></p>
+<p>  解决问题二: 可以把对象序列化之后作为key来使用。这里使用了JSON.stringify()进行序列化。</p>
+<h4 id="测试用例9"><a href="#测试用例9" class="headerlink" title="测试用例9"></a>测试用例9</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">var</span> tmp = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> tmpKey;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">      tmpKey = <span class="keyword">typeof</span> arr[i] + <span class="built_in">JSON</span>.stringify(arr[i]);</span><br><span class="line">      <span class="comment">// console.log(tmpKey); </span></span><br><span class="line">      <span class="keyword">if</span>(!tmp[tmpKey])&#123;</span><br><span class="line">          tmp[tmpKey] = <span class="number">1</span>;</span><br><span class="line">          newArr.push(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr));</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://qn.tyty.me/2018-01-12%2012-01-00%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="text"></p>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h3 id="方法一-Map"><a href="#方法一-Map" class="headerlink" title="方法一: Map"></a>方法一: Map</h3>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">var</span> tmp = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!tmp.get(arr[i])) &#123;</span><br><span class="line">      tmp.set(arr[i], <span class="number">1</span>);</span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line">unique(arr);  <span class="comment">//  [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: 这里用的是ES6-Map,是一种新的数据类型,类似于对象, 也是键值对的集合, 但是”键”的范围不限于字符串,<br>       各种类型的值(包括对象)都可以当做键。可以把它想象成key类型没有限制的对象。它的存取使用单独的get()<br>       set()接口。<br>       这里的方法也是进行判断tmp数组get有没有key与value如果没有就push,如果有判断条件不成立。<br>  <img src="https://qn.tyty.me/2018-01-12%2014-41-01%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="">     </p>
+<h3 id="方法二-Set"><a href="#方法二-Set" class="headerlink" title="方法二: Set"></a>方法二: Set</h3>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>(arr);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(set);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: Set是一种新的数据结构。它类似与数组,但是成员的值都是唯一的,没有重复的值。<br>       Array.from方法从类似数组或可迭代对象创建一个新的数组实例。<br>       也可以使用扩展运算符 return […set]与Array.from同理。</p>
+<h3 id="方法三-Array-prototype-includes"><a href="#方法三-Array-prototype-includes" class="headerlink" title="方法三: Array.prototype.includes"></a>方法三: Array.prototype.includes</h3>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">element</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(newArr.includes(element));</span><br><span class="line">    <span class="keyword">if</span> (!newArr.includes(element)) &#123;</span><br><span class="line">      newArr.push(element);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>  tip: includes方法用来判断一个数组是否包含一个指定的值,如果包含则返回true,<br>       否则返回false。恩,就是这样。</p>
+<h3 id="纯手打。"><a href="#纯手打。" class="headerlink" title="纯手打。"></a>纯手打。</h3><p>  加了一些自己的理解。后续还会加入更多关于数组去重的方法。 就这样,溜了。。。</p>
+<h3 id="原文章"><a href="#原文章" class="headerlink" title="原文章"></a><a href="https://zhuanlan.zhihu.com/p/25545584" target="_blank" rel="noopener">原文章</a></h3>
       
 
       
@@ -582,7 +649,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -680,14 +747,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -704,18 +763,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -724,11 +771,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,7 +787,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,15 +795,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -764,7 +819,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

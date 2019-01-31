@@ -199,8 +199,269 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/160_1.jpg" alt="1601"><br>
-        
+        <a id="more"></a>
+<p>原文地址:<a href="http://www.cnblogs.com/China3S/archive/2013/11/30/3451971.html" target="_blank" rel="noopener">深入理解正则表达式</a><br>一 前言</p>
+<p>　　对于正则表达式，相信很多人都知道，但是很多人的第一感觉就是难学，因为看第一眼时，觉得完全没有规律可寻，而且全是一堆各种各样的特殊符号，完全不知所云。</p>
+<p>其实只是对正则不了解而以，了解了你就会发现，原来就这样啊正则所用的相关字符其实不多，也不难记，更不难懂，唯一难的就是组合起来之后，可读性比较差，而且不容易理解，本文旨在让大家对正则有一个基本的了解，能看得懂简单的正则表达式，写得出简单的正则表达式，用以满足日常开发中的需求即可。</p>
+<p>0\d{2}-\d{8}|0\d{3}-\d{7} 先来一段正则，如果你对正则不了解，是不是完全不知道这一串字符是什么意思？这不要紧文章会详细解释每个字符的含义的。</p>
+<p>1.1 什么是正则表达式</p>
+<pre><code>正则表达式是一种特殊的字符串模式，用于匹配一组字符串，就好比用模具做产品，而正则就是这个模具，定义一种规则去匹配符合规则的字符。
+</code></pre><p>1.2 常用的正则匹配工具 </p>
+<pre><code>在线匹配工具：
+</code></pre><p>　　1 <a href="http://www.regexpal.com/" target="_blank" rel="noopener">http://www.regexpal.com/</a> </p>
+<pre><code> 2 http://rubular.com/ 
+
+正则匹配软件
+
+ McTracer 
+
+ 用过几个之后还是觉得这个是最好用的，支持将正则导成对应的语言如java C# js等还帮你转义了，Copy直接用就行了很方便，另外支持把正则表达式用法解释，如哪一段是捕获分组，哪段是贪婪匹配等等，总之用起来 So Happy .
+</code></pre><p>二 正则字符简单介绍</p>
+<p>2.1 元字符介绍</p>
+<p>   “^” ：^会匹配行或者字符串的起始位置，有时还会匹配整个文档的起始位置。 </p>
+<p>   “$”  ：$会匹配行或字符串的结尾<br>如图</p>
+<pre><code>而且被匹配的字符必须是以This开头有空格也不行，必须以Regex结尾，也不能有空格与其它字符
+</code></pre><p><img src="http://images.cnitblog.com/blog/366784/201311/23112422-56df0ef3f54c42abb55e7cabd5278824.png" alt=""><br> “\b” :不会消耗任何字符只匹配一个位置，常用于匹配单词边界 如 我想从字符串中”This is Regex”匹配单独的单词 “is” 正则就要写成 “\bis\b”  </p>
+<p>　　  \b 不会匹配is 两边的字符，但它会识别is 两边是否为单词的边界 </p>
+<p> “\d”: 匹配数字，</p>
+<p>　　  例如要匹配一个固定格式的电话号码以0开头前4位后7位，如0737-5686123  正则:^0\d\d\d-\d\d\d\d\d\d\d$ 这里只是为了介绍”\d”字符，实际上有更好的写法会在     下面介绍。</p>
+<p> “\w”：匹配字母，数字，下划线.</p>
+<p>　　  例如我要匹配”a2345BCD__TTz” 正则：”\w+”  这里的”+”字符为一个量词指重复的次数，稍后会详细介绍。</p>
+<p> “\s”：匹配空格 </p>
+<p>　　  例如字符 “a b c” 正则：”\w\s\w\s\w”  一个字符后跟一个空格，如有字符间有多个空格直接把”\s” 写成 “\s+” 让空格重复</p>
+<p>  “.”：匹配除了换行符以外的任何字符</p>
+<p>　　  这个算是”\w”的加强版了”\w”不能匹配 空格 如果把字符串加上空格用”\w”就受限了，看下用 “.”是如何匹配字符”a23 4 5 B C D__TTz”  正则：”.+”</p>
+<p>  “[abc]”: 字符组  匹配包含括号内元素的字符 </p>
+<pre><code>这个比较简单了只匹配括号内存在的字符，还可以写成[a-z]匹配a至z的所以字母就等于可以用来控制只能输入英文了，
+</code></pre><p>2.2 几种反义</p>
+<p>　　写法很简单改成大写就行了，意思与原来的相反，这里就不举例子了</p>
+<p>   “\W”   匹配任意不是字母，数字，下划线 的字符</p>
+<p>   “\S”   匹配任意不是空白符的字符</p>
+<p>　“\D”  匹配任意非数字的字符</p>
+<p>   “\B”  匹配不是单词开头或结束的位置</p>
+<p>   “[^abc]”  匹配除了abc以外的任意字符</p>
+<p> 2.3  量词</p>
+<p>　　先解释关于量词所涉及到的重要的三个概念</p>
+<pre><code>贪婪(贪心) 如&quot;*&quot;字符 贪婪量词会首先匹配整个字符串，尝试匹配时，它会选定尽可能多的内容，如果 失败则回退一个字符，然后再次尝试回退的过程就叫做回溯，它会每次回退一个字符，直到找到匹配的内容或者没有字符可以回退。相比下面两种贪婪量词对资源的消耗是最大的，
+</code></pre><p>   懒惰(勉强) 如 “?”  懒惰量词使用另一种方式匹配，它从目标的起始位置开始尝试匹配，每次检查一个字符，并寻找它要匹配的内容，如此循环直到字符结尾处。</p>
+<p>   占有  如”+” 占有量词会覆盖事个目标字符串，然后尝试寻找匹配内容 ，但它只尝试一次，不会回溯，就好比先抓一把石头，然后从石头中挑出黄金</p>
+<pre><code>&quot;*&quot;(贪婪)   重复零次或更多
+</code></pre><p>　　　  例如”aaaaaaaa” 匹配字符串中所有的a  正则： “a*”   会出到所有的字符”a”</p>
+<pre><code>&quot;+&quot;(懒惰)   重复一次或更多次
+</code></pre><p>　　     例如”aaaaaaaa” 匹配字符串中所有的a  正则： “a+”  会取到字符中所有的a字符，  “a+”与”a<em>“不同在于”+”至少是一次而”</em>“ 可以是0次，</p>
+<p>　　     稍后会与”?”字符结合来体现这种区别</p>
+<pre><code>&quot;?&quot;(占有)   重复零次或一次
+</code></pre><p>　　     例如”aaaaaaaa” 匹配字符串中的a 正则 ： “a?” 只会匹配一次，也就是结果只是单个字符a</p>
+<p>　  “{n}”  重复n次</p>
+<p>　　     例如从”aaaaaaaa” 匹配字符串的a 并重复3次 正则：  “a{3}”  结果就是取到3个a字符  “aaa”;</p>
+<p>　  “{n,m}”  重复n到m次</p>
+<p>　　     例如正则 “a{3,4}” 将a重复匹配3次或者4次 所以供匹配的字符可以是三个”aaa”也可以是四个”aaaa” 正则都可以匹配到</p>
+<pre><code>&quot;{n,}&quot;  重复n次或更多次
+</code></pre><p> 　　    与{n,m}不同之处就在于匹配的次数将没有上限，但至少要重复n次 如 正则”a{3,}” a至少要重复3次</p>
+<p> 把量词了解了之后之前匹配电话号码的正则现在就可以改得简单点了^0\d\d\d-\d\d\d\d\d\d\d可以改为”0\d+−\d7可以改为”0\d+−\d7”。</p>
+<p>这样写还不够完美如果因为前面的区号没有做限定，以至于可以输入很多们，而通常只能是3位或者4位，</p>
+<p>现在再改一下 “^0\d{2,3}-\d{7}”如此一来区号部分就可以匹配3位或者4位的了</p>
+<p> 2.4 懒惰限定符</p>
+<p>　　“*?”   重复任意次，但尽可能少重复 </p>
+<p>　　    如 “acbacb”  正则  “a.*?b” 只会取到第一个”acb” 原本可以全部取到但加了限定符后，只会匹配尽可能少的字符 ，而”acbacb”最少字符的结果就是”acb” </p>
+<p>　　“+?”  重复1次或更多次，但尽可能少重复</p>
+<p>　　   与上面一样，只是至少要重复1次</p>
+<p>　　“??”  重复0次或1次，但尽可能少重复</p>
+<p>　　    如 “aaacb” 正则 “a.??b” 只会取到最后的三个字符”acb”</p>
+<p>　　“{n,m}?”  重复n到m次，但尽可能少重复</p>
+<pre><code>如 &quot;aaaaaaaa&quot;  正则 &quot;a{0,m}&quot; 因为最少是0次所以取到结果为空
+</code></pre><p>　　“{n,}?”    重复n次以上，但尽可能少重复</p>
+<pre><code>如 &quot;aaaaaaa&quot;  正则 &quot;a{1,}&quot; 最少是1次所以取到结果为 &quot;a&quot;
+</code></pre><p>三  正则进阶</p>
+<pre><code>3.1 捕获分组
+</code></pre><p>　　先了解在正则中捕获分组的概念，其实就是一个括号内的内容 如 “(\d)\d” 而”(\d)” 这就是一个捕获分组，可以对捕获分组进行 后向引用 (如果后而有相同的内容则可以直接引用前面定义的捕获组，以简化表达式) 如(\d)\d\1 这里的”\1”就是对”(\d)”的后向引用</p>
+<p>那捕获分组有什么用呢看个例子就知道了</p>
+<p>如  “zery zery” 正则 \b(\w+)\b\s\1\b 所以这里的”\1”所捕获到的字符也是 与(\w+)一样的”zery”，为了让组名更有意义，组名是可以自定义名字的</p>
+<p>“\b(?<name>\w+)\b\s\k<name>\b” 用”?<name>“就可以自定义组名了而要后向引用组时要记得写成 “\k<name>“;自定义组名后,捕获组中匹配到的值就会保存在定义的组名里</name></name></name></name></p>
+<p>下面列出捕获分组常有的用法</p>
+<p>“(exp)”    匹配exp,并捕获文本到自动命名的组里</p>
+<p>“(?<name>exp)”   匹配exp,并捕获文本到名称为name的组里</name></p>
+<p>“(?:exp)”  匹配exp,不捕获匹配的文本，也不给此分组分配组号</p>
+<p>以下为零宽断言</p>
+<p>“(?=exp)”  匹配exp前面的位置</p>
+<p>　　如 “How are you doing” 正则”(?<txt>.+(?=ing))” 这里取ing前所有的字符，并定义了一个捕获分组名字为 “txt” 而”txt”这个组里的值为”How are you do”;</txt></p>
+<p>“(?&lt;=exp)”  匹配exp后面的位置</p>
+<p>　　如 “How are you doing” 正则”(?<txt>(?&lt;=How).+)” 这里取”How”之后所有的字符，并定义了一个捕获分组名字为 “txt” 而”txt”这个组里的值为” are you doing”;</txt></p>
+<p>“(?!exp)”  匹配后面跟的不是exp的位置</p>
+<p>　　如 “123abc” 正则 “\d{3}(?!\d)”匹配3位数字后非数字的结果</p>
+<p>“(?&lt;!exp)”  匹配前面不是exp的位置</p>
+<p>　　如 “abc123 “ 正则 “(?&lt;![0-9])123” 匹配”123”前面是非数字的结果也可写成”(?!&lt;\d)123”</p>
+<p>四  正则实战</p>
+<p>　　正则在做验证，与数据过滤时体现的威力是巨大的，我想用过的朋友都知道，下面我们把刚刚了解的全部结合起来做一次实战 做数据采集用正则过滤Html标签并取相应的数据</p>
+<p>我们的战场就选在博客园吧，假设现在要采集博客园首页的所有文章信息 包括文章标题，链接接 作者博客地址，文章简介，文章发布时间，阅读数据，评论数 ，推荐数。</p>
+<p>先看博客园文章的Html格式</p>
+<p>通过构造一个Http请求来取到数据并对数据进行相应处理得到关键信息，在过滤Html标签取文章时正则的强大的威力就体现出来了，</p>
+<p>正则的知识点也都基本用上了比如 “\s \w+ . * ? “还有捕获分组，零宽断言等等。喜欢的朋友可以试一试，然后自己看如何通过正则取相应数据的，代码中的正则都是很基本简单的，其意思与用法都在上文中详细写了。</p>
+<pre><code> class Program
+{
+    static void Main(string[] args)
+    {
+
+        string content = HttpUtility.HttpGetHtml();
+        HttpUtility.GetArticles(content);
+    }
+}
+
+internal class HttpUtility
+{
+    //默认获取第一页数据
+    public static string HttpGetHtml()
+    {
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(&quot;http://www.cnblogs.com/&quot;);
+        request.Accept = &quot;text/plain, */*; q=0.01&quot;;
+        request.Method = &quot;GET&quot;;
+        request.Headers.Add(&quot;Accept-Language&quot;, &quot;zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3&quot;);
+        request.ContentLength = 0;
+
+        request.Host = &quot;www.cnblogs.com&quot;;
+        request.UserAgent = &quot;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.1 (KHTML, like Gecko) Maxthon/4.1.3.5000 Chrome/26.0.1410.43 Safari/537.1&quot;;
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        Stream responStream = response.GetResponseStream();
+        StreamReader reader = new StreamReader(responStream, Encoding.UTF8);
+        string content = reader.ReadToEnd();
+        return content;
+
+    }
+
+    public static List&lt;Article&gt; GetArticles(string htmlString)
+    {
+        List&lt;Article&gt; articleList = new List&lt;Article&gt;();
+        Regex regex = null;
+        Article article = null;
+        regex = new Regex(&quot;&lt;div class=\&quot;post_item\&quot;&gt;(?&lt;content&gt;.*?)(?=&lt;div class=\&quot;clear\&quot;&gt;&quot; + @&quot;&lt;/div&gt;\s*&lt;/div&gt;)&quot;,
+                          RegexOptions.Singleline);
+
+        if (regex.IsMatch(htmlString))
+        {
+            MatchCollection aritcles = regex.Matches(htmlString);
+
+            foreach (Match item in aritcles)
+            {
+                article = new Article();
+                //取推荐
+                regex =
+                    new Regex(
+                        &quot;&lt;div class=\&quot;digg\&quot;&gt;.*&lt;span.*&gt;(?&lt;digNum&gt;.*)&quot; + @&quot;&lt;/span&gt;&quot; +
+                        &quot;.*&lt;div class=\&quot;post_item_body\&quot;&gt;&quot;, RegexOptions.Singleline);
+                article.DiggNum = regex.Match(item.Value).Groups[&quot;digNum&quot;].Value;
+
+                //取文章标题 需要去除转义字符
+                regex = new Regex(&quot;&lt;h3&gt;(?&lt;a&gt;.*)&lt;/h3&gt;&quot;, RegexOptions.Singleline);
+                string a = regex.Match(item.Value).Groups[&quot;a&quot;].Value;
+                regex = new Regex(&quot;&lt;a\\s.*href=\&quot;(?&lt;href&gt;.*?)\&quot;.*&gt;(?&lt;summary&gt;.*)&lt;/a&gt;&quot;, RegexOptions.Singleline);
+                article.AritcleUrl = regex.Match(a).Groups[&quot;href&quot;].Value;
+                article.AritcleTitle = regex.Match(a).Groups[&quot;summary&quot;].Value;
+
+                //取作者图片 
+                regex = new Regex(&quot;&lt;a.*&gt;(?&lt;img&gt;&lt;img[^&gt;].*&gt;)&lt;/a&gt;&quot;, RegexOptions.Singleline);
+                article.AuthorImg = regex.Match(item.Value).Groups[&quot;img&quot;].Value;
+
+                //取作者博客URL及链接的target属性
+                regex = new Regex(&quot;&lt;a\\s*?href=\&quot;(?&lt;href&gt;.*)\&quot;\\s*?target=\&quot;(?&lt;target&gt;.*?)\&quot;&gt;.*&lt;/a&gt;&quot;,
+                                  RegexOptions.Singleline);
+                article.AuthorUrl = regex.Match(item.Value).Groups[&quot;href&quot;].Value;
+                string urlTarget = regex.Match(item.Value).Groups[&quot;target&quot;].Value;
+
+                //取文章简介
+                //1 先取summary Div中所有内容
+                regex = new Regex(&quot;&lt;p class=\&quot;post_item_summary\&quot;&gt;(?&lt;summary&gt;.*)&lt;/p&gt;&quot;, RegexOptions.Singleline);
+                string summary = regex.Match(item.Value).Groups[&quot;summary&quot;].Value;
+                //2 取简介
+                regex = new Regex(&quot;(?&lt;indroduct&gt;(?&lt;=&lt;/a&gt;).*)&quot;, RegexOptions.Singleline);
+                article.AritcleInto = regex.Match(summary).Groups[&quot;indroduct&quot;].Value;
+
+
+                //取发布人与发布时间
+                regex =
+                    new Regex(
+                        &quot;&lt;div class=\&quot;post_item_foot\&quot;&gt;\\s*&lt;a.*?&gt;(?&lt;publishName&gt;.*)&lt;/a&gt;(?&lt;publishTime&gt;.*)&lt;span class=\&quot;article_comment\&quot;&gt;&quot;,
+                        RegexOptions.Singleline);
+                article.Author = regex.Match(item.Value).Groups[&quot;publishName&quot;].Value;
+                article.PublishTime = regex.Match(item.Value).Groups[&quot;publishTime&quot;].Value.Trim();
+
+                //取评论数
+                regex =
+                    new Regex(
+                        &quot;&lt;span class=\&quot;article_comment\&quot;&gt;&lt;a.*&gt;(?&lt;comment&gt;.*)&lt;/a&gt;&lt;/span&gt;&lt;span class=\&quot;article_view\&quot;&gt;&quot;,
+                        RegexOptions.Singleline);
+                article.CommentNum = regex.Match(item.Value).Groups[&quot;comment&quot;].Value;
+
+                //取阅读数
+                regex = new Regex(&quot;&lt;span\\s*class=\&quot;article_view\&quot;&gt;&lt;a.*&gt;(?&lt;readNum&gt;.*)&lt;/a&gt;&quot;, RegexOptions.Singleline);
+                article.ReadNum = regex.Match(item.Value).Groups[&quot;readNum&quot;].Value;
+                articleList.Add(article);
+            }
+
+        }
+        return articleList;
+    }
+
+
+
+    public static string ClearSpecialTag(string htmlString)
+    {
+
+        string htmlStr = Regex.Replace(htmlString, &quot;\n&quot;, &quot;&quot;, RegexOptions.IgnoreCase);
+        htmlStr = Regex.Replace(htmlStr, &quot;\t&quot;, &quot;&quot;, RegexOptions.IgnoreCase);
+        htmlStr = Regex.Replace(htmlStr, &quot;\r&quot;, &quot;&quot;, RegexOptions.IgnoreCase);
+        htmlStr = Regex.Replace(htmlStr, &quot;\&quot;&quot;, &quot;&apos;&quot;, RegexOptions.IgnoreCase);
+        return htmlStr;
+    }
+}
+
+public class Article
+{
+    /// &lt;summary&gt;
+    /// 文章标题
+    /// &lt;/summary&gt;
+    public string AritcleTitle { get; set; }
+    /// &lt;summary&gt;
+    /// 文章链接
+    /// &lt;/summary&gt;
+    public string AritcleUrl { get; set; }
+    /// &lt;summary&gt;
+    /// 文章简介
+    /// &lt;/summary&gt;
+    public string AritcleInto { get; set; }
+    /// &lt;summary&gt;
+    /// 作者名
+    /// &lt;/summary&gt;
+    public string Author { get; set; }
+    /// &lt;summary&gt;
+    /// 作者地址
+    /// &lt;/summary&gt;
+    public string AuthorUrl { get; set; }
+    /// &lt;summary&gt;
+    /// 作者图片
+    /// &lt;/summary&gt;
+    public string AuthorImg { get; set; }
+    /// &lt;summary&gt;
+    /// 发布时间
+    /// &lt;/summary&gt;
+    public string PublishTime { get; set; }
+    /// &lt;summary&gt;
+    /// 推荐数
+    /// &lt;/summary&gt;
+    public string DiggNum { get; set; }
+
+    /// &lt;summary&gt;
+    /// 评论数
+    /// &lt;/summary&gt;
+    public string CommentNum { get; set; }
+    /// &lt;summary&gt;
+    /// 阅读数
+    /// &lt;/summary&gt;
+    public string ReadNum { get; set; }
+
+}
+</code></pre><p>正则部分可能写得不很完美，但至少也匹配出来了，另外因为自己也是刚接触正则，也只能写出这种比较简单的正则。还望大家海涵~~</p>
+<h1>转载自<a href="http://www.cnblogs.com/China3S/archive/2013/11/30/3451971.html" target="_blank" rel="noopener">作者赖格英</a></h1>
+
       
 
       
@@ -272,7 +533,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -370,14 +631,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -394,18 +647,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -414,11 +655,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,7 +671,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,15 +679,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -454,7 +703,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

@@ -199,8 +199,173 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/240_1.jpg" alt=""><br>
-        
+        <a id="more"></a>
+<pre><code>Sass基础——Rem与Px的转换
+</code></pre><p>rem是CSS3中新增加的一个单位值，他和em单位一样，都是一个相对单位。不同的是em是相对于元素的父元素的font-size进行计算；rem是相对于根元素html的font-size进行计算。这样一来rem就绕开了复杂的层级关系，实现了类似于em单位的功能。</p>
+<h2>Rem的使用</h2>
+
+<p>前面说了em是相对于其父元素来设置字体大小的，这样就会存在一个问题，进行任何元素设置，都有可能需要知道他父元素的大小，在我们多次使用时，就会带来无法预知的错误风险。而rem是相对于根元素<html>，这样就意味着，我们只需要在根元素确定一个参考值，这个参考值设置为多少，完全可以根据您自己的需求来定。</html></p>
+<p>假设就使用浏览器默认的字号16px，来看一些px单位与rem之间的转换关系：</p>
+<pre><code>|  px  |     rem       |
+------------------------
+|  12  | 12/16 = .75   |
+|  14  | 14/16 = .875  |
+|  16  | 16/16 = 1     |
+|  18  | 18/16 = 1.125 |
+|  20  | 20/16 = 1.25  |
+|  24  | 24/16 = 1.5   |
+|  30  | 30/16 = 1.875 |
+|  36  | 36/16 = 2.25  |
+|  42  | 42/16 = 2.625 |
+|  48  | 48/16 = 3     |
+-------------------------        
+</code></pre><p>如果你要设置一个不同的值，那么需要在根元素<html>中定义，为了方便计算，时常将在<html>元素中设置font-size值为62.5%:</html></html></p>
+<pre><code>html {
+    font-size: 62.5%; /* 10 ÷ 16 × 100% = 62.5% */
+}
+</code></pre><p>相当于在<html>中设置font-size为10px，此时，上面示例中所示的值将会改变：</html></p>
+<pre><code>|  px  |     rem        |
+-------------------------
+|  12  | 12/10 = 1.2    |
+|  14  | 14/10 = 1.4    |
+|  16  | 16/10 = 1.6    |
+|  18  | 18/10 = 1.8    |
+|  20  | 20/10 = 2.0    |
+|  24  | 24/10 = 2.4    |
+|  30  | 30/10 = 3.0    |
+|  36  | 36/10 = 3.6    |
+|  42  | 42/10 = 4.2    |
+|  48  | 48/10 = 4.8    |
+-------------------------        
+</code></pre><p>由于rem是CSS3中的一个属性，很多人首先关注的就是浏览器对他的支持度，我截了一张caniuse对rem属性的兼容表：<br><img src="http://www.w3cplus.com/sites/default/files/styles/print_image/public/blogs/2013/sass/sass-px-rem-1.jpg" alt="CSS"><br>从上图可以清楚的知道，rem在众多浏览器中都已得到很好的支持，如果您的项目不用考虑IE低版本的话，你就可以放心的使用了，如果您的项目在IE低版本中还占有不少的比例，那么你还在担心使用rem不能兼容，而不敢使用。其实是没有必要的，可以针对低版本的IE浏览器做一定的处理：</p>
+<pre><code>html { font-size: 62.5%; } 
+body { font-size: 14px; font-size: 1.4rem; } /* =14px */
+h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */    
+</code></pre><p>这样一来解决了IE低版本的不能兼容的问题，但生出另一个不足地方，就是增加了代码量。必竟鱼和熊掌很多时候不能兼得嘛。</p>
+<div><br>如果你想更深入的了解rem如何使用，建议您阅读：<br><br><br> <a href="http://www.w3cplus.com/css3/define-font-size-with-css3-rem" target="_blank" rel="noopener">CSS3的REM设置字体大小</a>——viaw3cplus<br><br> <a href="http://snook.ca/archives/html_and_css/font-size-with-rem" target="_blank" rel="noopener">FONT SIZING WITH REM</a>——viaJonathan Snook<br><br> <a href="http://css-tricks.com/theres-more-to-the-css-rem-unit-than-font-sizing/" target="_blank" rel="noopener">There’s more to the CSS rem unit than font sizing</a>——viacss-tricks<br><br> <a href="http://techtime.getharvest.com/blog/in-defense-of-rem-units" target="_blank" rel="noopener">In Defense Of Rem Units</a>——viaMatthew Lettini<br><br> <a href="http://csswizardry.com/2011/05/font-sizing-with-rem-could-be-avoided/" target="_blank" rel="noopener">Font sizing with rem could be avoided</a>——viaHarry<br><br> <a href="http://ued.taobao.com/blog/2013/05/rem-font-size/" target="_blank" rel="noopener">响应式十日谈第一日：使用 rem 设置文字大小</a>——via一丝<br></div>
+
+<h2>为什么要使用rem</h2>
+
+<p>像em单位一样，在Responsive设计中使用rem单位非常有用。虽然他们都是相对单位，但使用rem单位可以避开很多层级的关系。因为em是相对于他的父元素的font-size，而rem是相对于根元素<html>。比如说h1设置了font-size为1rem之后，只要不重置html的font-size大小，无论他的父元素设置多大，对h1都不会有任何的影响。</html></p>
+<h4>Sass中rem的使用</h4>
+
+<p>在CSS中，实现px和rem转换非常简单，但每次使用都需进行计算。虽然在html中设置font-size:62.5%;会给大家带来便利，但终究有些烦人，也不是长远之计。既然我们学习了Sass，就应该思考如何让Sass来帮助我们做这些计算的工作。接下来介绍如何使用Sass实现px和rem之间的计算。</p>
+<p>rem在@function中的使用</p>
+<p>Sass中也可以像使用em一样，实现px转换为rem。这个过程也同样是通过Sass的@function方法来实现。</p>
+<p>根据rem的使用原理，可以知道px转rem需要在html根元素设置一个font-size值，因为rem是相对于html根元素。在Sass中定义一个px转rem的函数，先要设置一个默认变量：</p>
+<p>$browser-default-font-size: 16px !default;//变量的值可以根据自己需求定义<br>而且需要在html根元素中显示的声明font-size：</p>
+<pre><code>html {
+    font-size: $browser-default-font-size;
+}
+</code></pre><p>然后通过@function来实现px转为rem计算：</p>
+<pre><code>@function pxTorem($px){//$px为需要转换的字号
+    @return $px / $browser-default-font-size * 1rem;
+}
+</code></pre><p>定义好@function之后，实际使用中就简单多了：</p>
+<pre><code>//SCSS
+html {
+    font-size: $browser-default-font-size;
+}
+.header {
+    font-size: pxTorem(12px);
+}
+
+//CSS
+html {
+  font-size: 16px; }
+
+.header {
+  font-size: 0.75rem; }
+</code></pre><p>不过定义的这个函数pxTorem()虽然实现了px转换成rem的计算，但不能同时服务于多个属性值的计算：</p>
+<pre><code>.header {
+    font-size: pxTorem(12px);
+    margin: pxTorem(5px 10px);//同时计算多个值将报错
+}
+</code></pre><p>如果这样使用，编译的时候将会报错：</p>
+<pre><code>&gt;&gt;&gt; Change detected to: /Users/airen/Sites/testSass/style.scss
+      error style.scss (Line 4: Undefined operation: &quot;5px 10px/16px times 1rem&quot;.)
+这也就是说，如果样式同时需要设置多个属性值的时候，pxTorem()变得就局限性太大，换句话说，这个函数仅适合运用在具有单个属性值的属性上，例如font-size。如果要强行使用，只能同时使用多个pxTorem()：
+</code></pre><pre>
+//SCSS
+.header {
+    font-size: pxTorem(12px);
+    margin: pxTorem(5px) pxTorem(10px) pxTorem(15px);
+    border: pxTorem(1px) solid #f36;
+}
+
+//CSS
+.header {
+  font-size: 0.75rem;
+  margin: 0.3125rem 0.625rem 0.9375rem;
+  border: 0.0625rem solid #ff3366; }
+</pre>
+
+<h2>Sass中mixin实现rem</h2>
+
+<p>除了使用@function实现px转换成rem之外，还可以使用Sass中的mixin实现px转rem功能。</p>
+<p>font-size是样式中常见的属性之一，我们先来看一个简单mixin，用来实现font-size的px转rem：</p>
+<pre><code>@mixin font-size($target){
+    font-size: $target;
+    font-size: ($target / $browser-default-font-size) * 1rem;
+}
+</code></pre><p>在实际使用中，可以通过@include调用定义好的@mixin font-size:</p>
+<pre><code>//SCSS
+.footer {
+    @include font-size(12px);
+}
+
+//CSS
+.footer {
+  font-size: 12px;
+  font-size: 0.75rem; }
+</code></pre><p>可实际中，这个mixin太弱小了，根本无法实现我们需要的效果，因为我们很多样式属性中他可不只一个属性。为了实现多个属性能设置多值，就需要对mixin做出功能扩展：</p>
+<pre><code>@mixin remCalc($property, $values...) {
+  $max: length($values);//返回$values列表的长度值
+  $pxValues: &apos;&apos;;
+  $remValues: &apos;&apos;;
+
+  @for $i from 1 through $max {
+    $value: strip-units(nth($values, $i));//返回$values列表中的第$i个值，并将单位值去掉
+    $browser-default-font-size: strip-units($browser-default-font-size);
+    $pxValues: #{$pxValues + $value * $browser-default-font-size}px;
+
+    @if $i &lt; $max {
+      $pxValues: #{$pxValues + &quot; &quot;};
+    }
+  } 
+
+  @for $i from 1 through $max {
+    $value: strip-units(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i &lt; $max {
+      $remValues: #{$remValues + &quot; &quot;};
+    }
+  } 
+
+  #{$property}: $pxValues; 
+  #{$property}: $remValues; 
+}
+</code></pre><p>在这个remCalc()中定义了两个参数$property和$values…。其中$property表示的是样式属性，而$values…表示一个或者多个属性值。</p>
+<p>注：在上面定义的remCalc中使用了下自定义的函数strip-units，主要用来去除单位，详细的请参阅Sass基础——PX to EM Mixin和@function一文中的strip-units函数定义方法。</p>
+<p>px转rem的mixin定义完成后，就可以通过@include来引用：</p>
+<pre><code>//SCSS
+.wrapper {
+    @include remCalc(width,45);
+    @include remCalc(margin,1,.5,2,3);
+}
+
+//CSS
+.wrapper {
+  width: 720px;
+  width: 45rem;
+  margin: 16px 8px 32px 48px;
+  margin: 1rem 0.5rem 2rem 3rem; }
+</code></pre><p>在实际使用中取值有一点非常重要在remCalc()取的$values值为rem值。</p>
+<p>总结</p>
+<p>在这篇文章中，简单介绍了在Sass中如何定义@function和@mixin来实现px转换成rem的计算。希望大家能在这篇文章中找到自己需要的灵感。</p>
+<p> <a href="http://www.w3cplus.com/preprocessor/sass-px-to-rem-with-mixin-and-function.html" target="_blank" rel="noopener">转载自© w3cplus.com</a></p>
+
       
 
       
@@ -358,8 +523,45 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/165_1.jpg" alt=""><br>
-        
+        <a id="more"></a>
+<p>前段时间从windows服务器换到了ubuntu服务器,讲道理ubuntu是真的比<br>windows好用,当然linux的也是类似的,没用过就不多BB,我强烈推荐一波,如果说你正好要买服务器,考虑下linux的系统的服务器,当然你说不会什么shell命令什么都没有关系,跟着视频撸一遍,这样下来新鲜感十足,如有神助。<br>可能我bb一通,还是觉得没有实例来的痛快,我说下我用的ubuntu的部署的node项目。之前我用的也是windows的服务器,windows服务器本身是没有什么问题的。(只是对我而言)在windows上我采用的是本地更改项目代码然后通过ftp或者qq邮箱(呵呵)但是这两种方式,无论是哪一种都要去远程连接服务器,然后去重启服务,我觉得很麻烦,登来登去的很烦,很偶然看到ubuntu可以通过pm2部署,这样我给大家看下我pm2的代码</p>
+<pre>
+ecosystem.jsons  
+{
+    "apps":[{  
+        "name":"xiaomo",    
+        "script":"app.js",  
+        "env":{
+            "COMMON_VARIABLE":"true"
+        },
+        "env_production":{
+            "NODE_ENV":"production"
+        }
+    }
+    ],
+    "deploy":{
+        "production":{
+            "user":"wangdabao",
+            "host":["47.94.153.153"],
+            "ref":"origin/master",
+            "repo":"git@git.oschina.net:wangdabaoqq/node-millet.git",
+            "path":"/www/xiao/production",
+            "ssh_options":"StrictHostKeyChecking=no",
+            "post-deploy":"npm install --registry=https://registry.npm.taobao.org && pm2 startOrRestart ecosystem.json --env production",
+            "env":{
+                "NODE_ENV":"production"
+            }
+        }
+    }
+}
+</pre>   
+
+<p>当然我也是按照pm2官网的进行的编写,具体里面代表的意思可以看下pm2官网的部署<a href="http://pm2.keymetrics.io/docs/usage/deployment/" target="_blank" rel="noopener">http://pm2.keymetrics.io/docs/usage/deployment/</a>我也贴下链接,如果有兴趣的可以看下,当然这个必须要配合的是github或者是码云,coding等等我在这里也不说了,因为可以从上面的代码中看到我们的代码是从码云拉取的所以,到这里又有一个问题了私钥或者公钥,当然关于私钥和公钥是和git有关系的,如果你没有配置或者生成可以百度下非常简单,生成完以后要把私钥放到git或者码云的ssh上面,这样写完以后还要在服务器上添加私钥和公钥,一上弄完以后,我们就可以通过命令</p>
+<p><pre><br>git add .<br>git commit -m ‘update’<br>git push origin master<br>由于你是第一次使用所有要先<br>git remote add origin +上你的ssh或者https的git项目地址<br>第一次进行上传<br>pm2 deploy ecosystem.json production setup<br>以后每次都可以直接<br>pm2 deploy ecosystem.json production setup<br></pre></p>
+<p><pre><br><img src="https://qn.tyty.me/Screenshot.png"><br></pre><br>最后我推荐个慕课网上的一个视频叫</p><h3><a href="http://coding.imooc.com/class/95.html" target="_blank" rel="noopener">Node.js项目的线上服务器部署与发布</a></h3><i style="font-weight:bold">看完以后你会有一个全新的了解与认识。</i><p></p>
+<p><b style="font-size:14px; color:red;">↓↓<br>打下广告各位看官老爷们动动小手指给个start,我会继续努力让你们不喜欢的,先谢谢爸爸们,告辞.</b></p>
+<h1><a href="https://github.com/wangdabaoqq/node-millet" target="_blank" rel="noopener">传送门</a></h1>
+
       
 
       
@@ -437,8 +639,197 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/164_1.jpg" alt=""><br>
-        
+        <a id="more"></a>
+<p>###五. 资源教程:</p>
+<p>综合类</p>
+<p>前端知识体系<br>前端知识结构<br>Web前端开发大系概览<br>Web前端开发大系概览-中文版<br>Web Front-end Stack v2.2<br>En类资源汇总<br>免费的编程中文书籍索引<br>前端书籍<br>前端免费书籍大全<br>免费的编程中文书籍索引<br>智能社 - 精通JavaScript开发<br>重新介绍 JavaScript（JS 教程）<br>麻省理工学院公开课：计算机科学及编程导论<br>JavaScript中的this陷阱的最全收集–没有之一<br>JS函数式编程指南<br>JavaScript Promise迷你书（中文版）<br>腾讯移动Web前端知识库<br>Front-End-Develop-Guide 前端开发指南<br>前端开发笔记本<br>大前端工具集 - 聂微东<br>前端开发者手册<br>前端开发者手册<br>JavaScript 资源大全中文版<br>伯乐在线 - 资源大全<br>伯乐在线 - 前端资源库<br>入门类</p>
+<p>前端入门教程<br>瘳雪峰的Javascript教程<br>jQuery基础教程<br>前端工程师必备的PS技能——切图篇<br>结合个人经历总结的前端入门方法<br>效果类</p>
+<p>弹出层<br>焦点图轮播特效<br>工具类</p>
+<p>css sprite 雪碧图制作<br>版本控制入门 – 搬进 Github<br>Grunt-beginner前端自动化工具<br>慕课专题</p>
+<p>张鑫旭 - 慕课系列<br>lyn - 慕课系列<br>艾伦 - 慕课系列<br>碧仔 - Hello，移动WEB<br>haorooms - js/jquery宽高介绍<br>周刊类</p>
+<p>百度FEX技术周刊<br>平安科技移动开发二队技术周报<br>360奇舞周刊</p>
+<p>###六. API:</p>
+<p>####1. 总目录</p>
+<p>开发中心</p>
+<p>mozilla js参考<br>chrome开发中心（chrome的内核已转向blink）<br>safari开发中心<br>microsoft js参考<br>js秘密花园<br>js秘密花园<br>w3help 综合Bug集合网站<br>综合搜索</p>
+<p>javascripting<br>各种流行库搜索<br>综合API</p>
+<p>runoob.com-包含各种API集合<br>开源中国在线API文档合集<br>devdocs 英文综合API网站<br>devdocs 中文综合API网站<br>overapi 英文综合API网站</p>
+<p>####2. jQuery</p>
+<p>jQuery API 中文文档<br>hemin 在线版<br>css88 jq api<br>css88 jqui api<br>学习jquery<br>jquery 源码查找</p>
+<p>####3. Ecmascript</p>
+<p>Understanding ECMAScript 6 - Nicholas C. Zakas<br>exploring-es6<br>exploring-es6翻译<br>exploring-es6翻译后预览<br>阮一峰 es6<br>阮一峰 Javascript<br>ECMA-262，第 5 版<br>es5</p>
+<p>####4. Js template</p>
+<p>template-chooser<br>artTemplate<br>tomdjs<br>淘宝模板juicer模板<br>Fxtpl v1.0 繁星前端模板引擎<br>laytpl<br>mozilla - nunjucks<br>Juicer<br>dustjs<br>etpl<br>twitter-tpl</p>
+<p>####5. 弹出层</p>
+<p>artDialog 最新版<br>artDialog 文档<br>google code 下载地址<br>贤心弹出层<br>响应式用户交互组件库<br>sweetalert-有css3动画弹出层</p>
+<p>####6. CSS</p>
+<p>CSS 语法参考<br>CSS3动画手册<br>alloyteam - CSS3 UI 库<br>腾讯css3动画制作工具<br>志爷css小工具集合<br>css3 js 移动大杂烩<br>bouncejs 触摸库<br>css3 按钮动画<br>animate.css<br>全局CSS的终结(狗带) [译]<br>ANIMATION - 大漠<br>css选择器</p>
+<p>####7. Angularjs</p>
+<p>Angular.js 的一些学习资源<br>angularjs中文社区<br>Angular Style Guide<br>Angularjs源码学习<br>Angularjs源码学习<br>angular对bootstrap的封装<br>angularjs + nodejs<br>吕大豹 Angularjs<br>AngularJS 最佳实践<br>Angular的一些扩展指令<br>Angular数据绑定原理<br>一些扩展Angular UI组件<br>Ember和AngularJS的性能测试<br>带你走近AngularJS - 基本功能介绍<br>Angularjs开发指南<br>Angularjs学习<br>不要带着jQuery的思维去学习AngularJS<br>angularjs 学习笔记<br>angularjs 开发指南<br>angularjs 英文资料<br>angular bootstrap<br>angular jq mobile<br>angular ui<br>整合jQuery Mobile+AngularJS经验谈<br>有jQuery背景，该如何用AngularJS编程思想<br>AngularJS在线教程<br>angular学习笔记<br>UI Bootstrap - AngularJS directives specific to Bootstrap<br>NG Bootstrap - Angular 2 directives specific to Bootstrap 4</p>
+<p>####8. React</p>
+<p>react海量资源<br>react.js 中文论坛<br>react.js 官方网址<br>react.js 官方文档<br>react.js material UI<br>react.js TouchstoneJS UI<br>react.js amazeui UI<br>React 入门实例教程 - 阮一峰<br>React Native 中文版<br>Webpack 和 React 小书 - 前端乱炖<br>Webpack 和 React 小书 - gitbook<br>React原创实战视频教程<br>React 入门教程<br>react-webpack-starter<br>基于react组件化开发<br>React 编程规范(by Airbnb)<br>React Webpack小说<br>ant.design</p>
+<p>####9. 移动端API</p>
+<p>API<br>99移动端知识集合<br>移动端前端开发知识库<br>移动前端的一些坑和解决方法（外观表现）<br>【原】移动web资源整理<br>zepto 1.0 中文手册<br>zepto 1.0 中文手册<br>zepto 1.1.2<br>zepto 中文注释<br>jqmobile 手册<br>移动浏览器开发集合<br>移动开发大杂烩<br>微信webview中的一些问题<br>框架<br>特色的HTML框架可以创建精美的iOS应用<br>淘宝SUI</p>
+<p>####10. avalon</p>
+<p>avalonjs<br>Avalon新一代UI库： OniUI<br>avalon.oniui-基于avalon的组件库</p>
+<p>####11. Requriejs</p>
+<p>Javascript模块化编程（一）：模块的写法<br>Javascript模块化编程（二）：AMD规范<br>Javascript模块化编程（三）：require.js的用法<br>RequireJS入门（一）<br>RequireJS入门（二）<br>RequireJS进阶（三）<br>requrie源码学习<br>requrie 入门指南<br>requrieJS 学习笔记<br>requriejs 其一<br>require backbone结合</p>
+<p>####12. Seajs</p>
+<p>seajs<br>seajs 中文手册<br>JavaScript模块化开发库之SeaJS</p>
+<p>####13. Less,sass</p>
+<p>sass<br>sass教程-sass中国<br>Sass 中文文档<br>less</p>
+<p>####14. Markdown</p>
+<p>Markdown 语法说明 (简体中文版)<br>markdown入门参考<br>gitbook 国外的在线markdown可编辑成书<br>mdeditor 一款国内的在线markdown编辑器<br>stackedit 国外的在线markdown编辑器，功能强大，同步云盘<br>mditor 一款轻量级的markdown编辑器<br>lepture-editor<br>markdown-editor<br>Markdown 在线编辑器</p>
+<p>####15. D3</p>
+<p>d3 Tutorials<br>Gallery<br>lofter<br>iteye<br>ruanyifeng</p>
+<p>####16. 兼容性</p>
+<p>esma 兼容列表<br>W3C CSS验证服务<br>caniuse<br>csscreator<br>microsoft<br>在线测兼容-移动端<br>emulators</p>
+<p>####17. UI相关</p>
+<p>bootcss<br>MetroUICSS<br>semantic<br>Buttons<br>kitecss<br>pintuer<br>amazeui<br>worldhello<br>linuxtoy<br>gitmagic<br>rogerdudler<br>gitref<br>book<br>gogojimmy</p>
+<p>####18. HTTP</p>
+<p>HTTP API 设计指南</p>
+<p>####19. 其它API</p>
+<p>javascript流行库汇总<br>验证api<br>underscore 中文手册<br>underscore源码分析<br>underscore源码分析-亚里士朱德的博客<br>underscrejs en api<br>lodash - underscore的代替品<br>ext4api<br>backbone 中文手册<br>qwrap手册<br>缓动函数<br>svg 中文参考<br>svg mdn参考<br>svg 导出 canvas<br>svg 导出 png<br>ai-to-svg<br>localStorage 库</p>
+<p>####20. 图表类</p>
+<p>Highcharts 中文API<br>Highcharts 英文API<br>ECharts 百度的图表软件<br>高德地图<br>开源的矢量图脚本框架<br>svg 地图<br>jQuery Vector Map Library</p>
+<p>####21. vue</p>
+<p>Vue<br>Vue 论坛<br>Vue 入门指南<br>Vue 的一些资源索引</p>
+<p>####21. 正则</p>
+<p>JS正则表达式元字符<br>正则表达式30分钟入门教程<br>MDN-正则表达式<br>ruanyifeng - RegExp对象<br>小胡子哥 - 进阶正则表达式<br>is.js<br>正则在线测试<br>haorooms正则文章</p>
+<p>####22. ionic</p>
+<p>ionic</p>
+<p>####23. 其它</p>
+<p>Mock.js 是一款模拟数据生成器<br>jsdoc 注释生成 - apidocjs</p>
+<p>###七. 开发规范</p>
+<p>前端</p>
+<p>通过分析github代码库总结出来的工程师代码书写习惯<br>HTML&amp;CSS编码规范 by @mdo<br>前端编码规范之js - by yuwenhui<br>前端编码规范之js - by 李靖<br>前端开发规范手册<br>Airbnb JavaScript 编码规范（简体中文版）<br>AMD与CMD规范的区别<br>AMD与CMD规范的区别<br>KISSY 源码规范<br>bt编码规范<br>规范加强版<br>前端代码规范 及 最佳实践<br>百度前端规范<br>百度前端规范<br>百度前端规范<br>ECMAScript6 编码规范–广发证券前端团队<br>JavaScript 风格指南/编码规范（Airbnb公司版）<br>网易前端开发规范<br>css模块<br>前端规范资源列表<br>前端JavaScript规范<br>Nodejs</p>
+<p>Node.js 风格指南<br>PHP</p>
+<p>最流行的PHP 代码规范<br>最流行的PHP 代码规范<br>Android</p>
+<p>【敏捷开发】Android团队开发规范<br>Android 开发规范与应用<br>IOS</p>
+<p>Swift Style Guide</p>
+<p>###八. 其它收集</p>
+<p>####1. 各大公司开源项目</p>
+<p>Facebook</p>
+<p>Facebook Projects<br>百度 Baidu</p>
+<p>百度web前端研发部<br>百度EFE<br>百度github<br>腾讯 qq</p>
+<p>alloyteam<br>alloyteam-github<br>alloyteam-AlloyGameEngine<br>AlloyDesigner 即时修改，即时保存，设计稿较正，其它开发辅助工具<br>H5交互页编辑器AEditor介绍 H5动画交互页开发的工具介绍<br>AEditor H5动画交互页开发的工具<br>腾讯html5<br>腾讯开源项目<br>奇舞团</p>
+<p>奇舞团开源项目<br>去哪儿</p>
+<p>Qunar UED<br>其它</p>
+<p>maka<br>值得订阅的weekly</p>
+<p>####2. Javascript</p>
+<p>常用</p>
+<p>ieBetter.js-让IE6-IE8拥有IE9+,Chrome等浏览器特性<br>模拟键盘<br>拼音<br>中国个人身份证号验证<br>算法</p>
+<p>数据结构与算法 JavaScript 描述. 章节练习<br>常见排序算法（JS版）<br>经典排序<br>常见排序算法-js版本<br>JavaScript 算法与数据结构 精华集<br>面试常考算法题精讲<br>移动端</p>
+<p>fastclick<br>no-click-delay<br>JSON</p>
+<p>模拟生成JSON数据<br>返回跨域JSONAPI</p>
+<p>####3. Html5</p>
+<p>HTML5 有哪些让你惊艳的 demo？<br>html5 Canvas画图系列教程目录</p>
+<p>####4. CSS</p>
+<p>browserhacks</p>
+<p>####5. jQuery</p>
+<p>焦点图</p>
+<p>myfocus<br>myfocus-官方演示站<br>SuperSlidev2.1 – 大话主席<br>soChange</p>
+<p>####6. Ext, EasyUI, J-UI 及其它各种UI方案</p>
+<p>Ext</p>
+<p>extjs<br>ext4英文api<br>ext4中文api<br>EasyUI</p>
+<p>jquery easyui 未压缩源代码<br>J-UI</p>
+<p>J-UI<br>Other</p>
+<p>MUI-最接近原生APP体验的高性能前端框架<br>Amaze UI | 中国首个开源 HTML5 跨屏前端框架<br>淘宝 HTML5 前端框架<br>KISSY - 阿里前端JavaScript库<br>网易Nej - Nice Easy Javascript<br>Kendo UI MVVM Demo<br>Bootstrap<br>Smart UI<br>雅虎UI - CSS UI</p>
+<p>####7. 页面 社会化 分享功能</p>
+<p>百度分享 pc端<br>JiaThis pc端<br>社会化分享组件 移动端<br>ShareSDK 轻松实现社会化功能 移动端<br>友盟分享 移动端<br>addthis 国外社交分享<br>一键分享到各种SNS</p>
+<p>####8. 富文本编辑器</p>
+<p>百度 ueditor<br>经典的ckeditor<br>经典的kindeditor<br>wysiwyg<br>一个有情怀的编辑器。Bach’s Editor<br>tower用的编辑器<br>summernote 编辑器<br>html5编辑器<br>XEditor<br>wangEditor<br>wangEditor-mobile–移动端编辑器<br>Trumbowyg - 轻量编辑器<br>国外的一款编辑器 - tinymce</p>
+<p>####9. 日历</p>
+<p>PC</p>
+<p>经典my97<br>强大的独立日期选择器<br>fullcalendar<br>fullcalendar日历控件知识点集合<br>中文api<br>农历日历<br>超酷的仿百度带节日日历老黄历控件<br>日期格式化<br>大牛日历控件<br>我群某管理作品<br>input按位替换-官网<br>input按位替换-github<br>bootstrap-daterangepicker<br>国外30个插件集合<br>JavaScript datepicker<br>Datepair.js<br>一个风格多样的日历<br>弹出层式的全日历<br>jquery双日历<br>bootstrap-datetimepicker/<br>贤心-laydate<br>Pikaday-微型日历<br>AngularJS datepicker directives<br>周选择日历插件<br>移动</p>
+<p>大气实用jQuery手机移动端日历日期选择插件<br>jQuery Mobile 移动开发中的日期插件Mobiscroll<br>Date library</p>
+<p>Datejs<br>sugarjs</p>
+<p>####10. 综合效果搜索平台</p>
+<p>效果网<br>17素材<br>常用的JavaScript代码片段</p>
+<p>####11. 前端工程化</p>
+<p>概述</p>
+<p>前端工具大全<br>什么是前端工程化<br>Gulp</p>
+<p>Gulp官网<br>Gulp中文网<br>gulp资料收集<br>Gulp：任务自动管理工具 - ruanyifeng<br>Gulp插件<br>Gulp不完全入门教程<br>为什么使用gulp?<br>Gulp安装及配合组件构建前端开发一体化<br>Gulp 入门指南<br>Gulp 入门指南 - nimojs<br>Gulp入门教程<br>Gulp in Action<br>Gulp开发教程（翻译）<br>前端构建工具gulpjs的使用介绍及技巧<br>Grunt</p>
+<p>gruntjs<br>Grunt中文网<br>Grunt入门教程<br>Fis</p>
+<p>fis 官网<br>fis<br>webpack</p>
+<p>webpack<br>Webpack 中文指南<br>Webpack，101入门体验<br>webpack入门教程<br>基于webpack搭建前端工程解决方案探索<br>Webpack傻瓜式指南（一）<br>Webpack指南<br>webpack指南<br>webpack 教程资源收集</p>
+<p>####12. 轮播图</p>
+<p>pc图轮</p>
+<p>单屏轮播sochange<br>左右按钮多图切换<br>fullpage全屏轮播<br>haorooms资源库轮播大全<br>移动端</p>
+<p>无缝切换<br>滑屏效果<br>全屏fullpage<br>单个图片切换<br>单个全屏切换<br>百度的切换库<br>单个全屏切换<br>滑屏效果<br>旋转拖动设置<br>类似于swipe切换<br>支持多种形式的触摸滑动<br>滑屏效果<br>大话主席pc移动图片轮换<br>滑屏效果<br>基于zepto的fullpage<br>[WebApp]定宽网页设计下，固定宽度布局开发WebApp并实现多终端下WebApp布局自适应<br>判断微信客户端的那些坑<br>可以通过javascript直接调用原生分享的工具<br>JiaThis 分享到微信代码<br>聊聊移动端跨平台开发的各种技术<br>前端自动化测试<br>多种轮换图片<br>滑动侧边栏</p>
+<p>####13. 文件上传</p>
+<p>百度上传组件<br>上传<br>flash 头像上传<br>图片上传预览<br>图片裁剪<br>图片裁剪-shearphoto<br>jQuery图片处理<br>文件上传</p>
+<p>####14. 模拟select</p>
+<p>糖饼 select<br>flexselect<br>双select<br>select2</p>
+<p>####15. 取色插件</p>
+<p>类似 Photoshop 的界面取色插件<br>jquery color<br>取色插件集合<br>farbtastic 圆环＋正方形</p>
+<p>####16. 城市联动</p>
+<p>jquery.cityselect.js基于jQuery+JSON的省市或自定义联动效果<br>移动端省市三级联动demo</p>
+<p>####17. 剪贴板</p>
+<p>剪贴板<br>clipboard 最新的剪切方案</p>
+<p>####18. 简繁转换</p>
+<p>简繁转换</p>
+<p>####19. 表格 Grid</p>
+<p>facebook表格<br>类似于Excel编辑表格-handsontable<br>bootstrap-table插件<br>datatables<br>不错的Grid</p>
+<p>####20. 在线演示</p>
+<p>js 在线编辑 - runjs<br>js 在线编辑 - jsbin<br>js 在线编辑 - codepen<br>js 在线编辑 - jsfiddle<br>phpfiddle<br>java 在线编辑 - ideone<br>js 在线编辑 - hcharts<br>js 在线编辑 - jsdm<br>sql 在线编辑 - sqlfiddle<br>mozilla 在线编辑器</p>
+<p>####21. 播放器</p>
+<p>Html5 VideoPlayer</p>
+<p>####22. 粒子动画</p>
+<p>Proton 烟花</p>
+<p>####23. 表单验证</p>
+<p>Validform<br>formvalidator<br>jQuery formValidator<br>表单验证完美解决方案</p>
+<p>####24. 表单美化</p>
+<p>美化checkbox</p>
+<p>###九. Nodejs</p>
+<p>Node.js 包教不包会<br>篇幅比较少<br>node express 入门教程<br>nodejs定时任务<br>一个nodejs博客<br>【NodeJS 学习笔记04】新闻发布系统<br>过年7天乐，学nodejs 也快乐<br>七天学会NodeJS<br>Nodejs学习笔记（二）— 事件模块<br>nodejs入门<br>angularjs nodejs<br>从零开始nodejs系列文章<br>理解nodejs<br>nodejs事件轮询<br>node入门<br>nodejs cms<br>Node初学者入门，一本全面的NodeJS教程<br>NodeJS的代码调试和性能调优<br>runs Node.js programs through Chromium DevTools</p>
+<p>###十. 性能优化</p>
+<p>常规优化</p>
+<p>Javascript高性能动画与页面渲染<br>移动H5前端性能优化指南<br>5173首页前端性能优化实践<br>给网页设计师和前端开发者看的前端性能优化<br>复杂应用的 CSS 性能分析和优化建议<br>张鑫旭——前端性能<br>前端性能监控总结<br>网站性能优化之CSS无图片技术<br>web前端性能优化进阶路<br>前端技术：网站性能优化之CSS无图片技术<br>浏览器的加载与页面性能优化<br>页面加载中的图片性能优化<br>Hey——前端性能<br>html优化<br>99css——性能<br>Yslow——性能优化<br>YSLOW中文介绍<br>转一篇Yahoo关于网站性能优化的文章，兼谈本站要做的优化<br>Yahoo!团队实践分享：网站性能<br>网站性能优化指南：什么使我们的网站变慢？<br>网站性能优化实践，减少加载时间，提高用户体验<br>浅谈网站性能优化 前端篇<br>前端重构实践之如何对网站性能优化？<br>前端性能优化：使用媒体查询加载指定大小的背景图片<br>网站性能系列博文<br>加载，不只是少一点点<br>前端性能的测试与优化<br>分享网页加载速度优化的一些技巧？<br>页面加载中的图片性能优化<br>web前端优化(基于Yslow)<br>网站性能优化工具大全<br>【高性能前端1】高性能HTML<br>【高性能前端2】高性能CSS<br>由12306谈谈网站前端性能和后端性能优化<br>AlloyTeam——前端优化<br>毫秒必争，前端网页性能最佳实践<br>网站性能工具Yslow的使用方法<br>前端工程与性能优化（上）：静态资源版本更新与缓存<br>前端工程与性能优化（下）：静态资源管理与模板框架<br>HTTPS连接的前几毫秒发生了什么<br>Yslow<br>Essential Web Performance Metrics — A Primer, Part 1<br>Essential Web Performance Metrics — Part 2<br>YUISlide,针对移动设备的动画性能优化<br>Improving Site Performance<br>让网站提速的最佳前端实践<br>Why Website Speed is Important<br>Need for Speed – How to Improve your Website Performance<br>阿里无线前端性能优化指南 (Pt.1 加载期优化)<br>前端性能优化补充篇<br>优化工具</p>
+<p>JavaScript 性能分析新工具 OneProfile<br>JavaScript 堆内存分析新工具 OneHeap<br>在线工具</p>
+<p>google在线工具<br>阿里测<br>阿里-免费测试服务<br>阿里-F2etest多浏览器兼容性测试解决方案<br>js性能测试<br>轻松玩转PDF</p>
+<p>###十一. 前端架构</p>
+<p>技术架构<br>前端架构<br>如何成为前端架构师<br>关于前端架构-张克军<br>百度腾讯offer比较（腾讯游戏VS百度基础架构）</p>
+<p>###十二. 个人作品</p>
+<p>####1. 推荐作品</p>
+<p>winter代码片段需要翻墙<br>fgm<br>岑安作品集<br>当耐特demo集合<br>米空格 js作品<br>myFocus<br>SeaJS组件库<br>颜海镜作品<br>脚儿网作品<br>javascript个人作品<br>妙味的雷东升游戏作品<br>javascript作品集<br>云五笔，灰度产生生成工具<br>项目主页<br>个性的作品主页<br>ucren js demos 集<br>智能社<br>实例陈列架<br>zoye demo<br>王员外<br>平凡<br>jyg 游戏案例<br>很多jquery插件<br>不羁虫 - soJs 作品系列<br>frozenui<br>黑白棋<br>fromone</p>
+<p>####2. 群员作品</p>
+<p>MDialog - [合肥-M.J]<br>轮播图 - [上海－冷静]<br>[广州—坚壳]<br>[成都 - 无痕]　感恩节专题<br>[球霸天]<br>[北京-小数]<br>[ptf] Magix 工具<br>[杭州-Pft] Magix 基于 MVC 结构和 Hash 驱动的 OPOA（One Page One Application）应用<br>[上海-剧中人]-实验室<br>[上海-豪情 ] 作品集合<br>[成都-feeling]<br>[上海-angela]<br>[海南-hank]作品<br>[上海-张力]博客<br>[上海-zenki]作品<br>移动端图案解锁<br>[合肥-M.J] - MPreview 移动端图片预览组<br>[合肥-M.J] - Mexam 移动端在线做题组<br>[北京-苏瑞] - dancer小人<br>[上海-玄沐]- 个人网站<br>[厦门-二哲]- 个人博客</p>
+<p>####3. 国外大牛精品</p>
+<p>pazguille</p>
+<p>###十三. 简历</p>
+<p>生成</p>
+<p>MarkDown在线简历工具<br>MarkDown在线简历工具<br>模板</p>
+<p>简历<br>张伦<br>简历<br>翁天信<br>动画方式的简历<br>组件丰富简历<br>简历池<br>haorooms博客<br>Justin Young<br>各个程序员简历模板</p>
+<p>###十四. 面试题</p>
+<p>前端</p>
+<p>那几个月在找工作（百度，网易游戏）<br>名企笔试大全<br>2016校招内推 – 阿里巴巴前端 – 三面面试经历<br>年后跳槽那点事：乐视+金山+360面试之行<br>拉勾网js面试题<br>前端面试<br>前端开发面试题<br>百度面试<br>前端工作面试问题<br>前端开发面试题<br>5个经典的前端面试问题<br>如何面试一名前端开发工程师？<br>前端实习生面试总结<br>史上最全 前端开发面试问题及答案整理<br>BAT及各大互联网公司2014前端笔试面试题：JavaScript篇<br>前端开发面试题大收集<br>收集的前端面试题和答案<br>如何面试前端工程师<br>前端开发面试题<br>牛客网-笔试面经<br>Front End Developer Questions<br>40 个重要的 HTML5 面试问题及答案<br>java</p>
+<p>Java工程师笔试题整理[校招篇]</p>
+<p>###十五. iconfont</p>
+<p>中文字体<br>淘宝字库<br>字体<br>制作教程<br>zhangxinxu-icommon<br>icommon<br>用字体在网页中画ICON图标(推荐教程)<br>字体压缩工具 感谢初级群　[深圳-小鱼] 的推荐</p>
+<p>###十六. 开发工具类</p>
+<p>前端开发工具</p>
+<p>IntelliJ IDEA 简体中文专题教程<br>Webstorm,InterllIdea,Phpstorm<br>SublimeText<br>Atom<br>Atom飞行手册（中文版）<br>Atom-vue代码高亮<br>visual studio code<br>visual studio code 使用指南<br>Chrome, Firebug, Filddle 调试</p>
+<p>Fiddler</p>
+<p>Fiddler调式使用知多少(一)深入研究<br>微信fiddle<br>微信fiddle<br>Chrome</p>
+<p>Google Chrome 官方<br>Chrome - 基础<br>Chrome - 进阶<br>Chrome - 性能<br>Chrome - 性能进阶<br>Chrome - 移动<br>Chrome - 使用技巧<br>Chrome - Console控制台不完全指南<br>Chrome - Workspace使浏览器变成IDE<br>network面板<br>chrome开发工具快捷键<br>chrome调试工具常用功能整理<br>Chrome 开发工具 Workspace 使用<br>Chrome神器Vimium快捷键学习记录<br>sass调试-w3cplus<br>如何更专业的使用Chrome开发者工具-w3cplus<br>chrome调试canvas<br>chrome profiles1<br>chrome profiles2<br>chrome profiles3<br>chrome移动版调试<br>chrome调试<br>chrome的调试<br>chrome console 命令详解<br>查看事件绑定1<br>查看事件绑定2<br>神器——Chrome开发者工具(一)<br>奇趣百科性能优化(Chrome DevTools 中的 Timeline Profils 等工具使用介绍)<br>chrome 开发者工具的 15 个小技巧<br>Chrome开发者工具不完全指南<br>Chrome 开发者工具使用技巧<br>Chrome渲染分析之Rendering工具使用(1)<br>Chrome渲染分析之Rendering工具使用(2)<br>Chrome渲染分析之Rendering工具使用(3)<br>像 Sublime Text 一样使用 Chrome DevTools<br>Chorme 35个开发者工具的小技巧<br>Chrome 实用调试技巧<br>Firebug</p>
+<p>firebug视频教程<br>firefox 模拟器<br>console.log 命令详解<br>Firebug入门指南<br>Firebug控制台详解<br>移动,微信调试</p>
+<p>微信调试的那些事<br>微信调试官网<br>微信公众号本地调试<br>微信、手Q、Qzone之x5内核inspect调试解决方案<br>浏览器端调试安卓<br>移动端前端开发调试<br>使用 Chrome 远程调试 Android 设备<br>mac移动端调试<br>mac移动端调试<br>无线调试攻略<br>无线调试攻略<br>屌爆了,完美调试 微信webview(x5)<br>远程console<br>微信调试工具<br>各种真机远程调试方法汇总<br>手机测试自己写的web页面<br>iOS Simulator</p>
+<p>Simulator<br>Xcode中的iOS模拟器(iOS Simulator)的介绍和使用心得<br>img</p>
+<p>loading img<br>智图-图片优化平台<br>在线png优化<br>生成二维码</p>
+<p>生成二维码<br>浏览器同步</p>
+<p>puer<br>liveReload<br>f5<br>File Watchers<br>在线PPT制作</p>
+<p>nodePPT<br>PPT<br>reveal<br>slippy</p>
+<p>###十七. 前端导航网站</p>
+<p>前端导航<br>前端网址导航<br>前端名录<br>前端导航<br>前端开发资源<br>前端开发仓库 - 众多效果的收集地<br>前端资源导航<br>F2E 前端导航<br>前端收藏夹<br>前端导航<br>前端工具箱<br>前端人俱乐部-灵感_Idea<br>haorooms前端导航</p>
+<p>###十八. 常用CDN</p>
+<p>新浪CDN<br>百度静态资源公共库<br>360网站卫士常用前端公共库CDN服务<br>Bootstrap中文网开源项目免费 CDN 服务<br>开放静态文件 CDN - 七牛<br>CDN加速 - jq22<br>jQuery CDN<br>Google jQuery CDN<br>微软CDN</p>
+<p>###十九. Git,SVN,Github</p>
+<p>Git</p>
+<p>git-scm<br>廖雪峰-Git教程<br>git-for-windows<br>GitHub 添加 SSH keys<br>gogithub<br>git常规命令练习<br>git的资料整理<br>我所记录的git命令（非常实用）<br>企业开发git工作流模式探索部分休整<br>GitHub 漫游指南<br>GitHub秘籍<br>使用git和github进行协同开发流程<br>动画方式练习git<br>版本管理工具介绍—Git篇<br>版本控制入门 – 搬进 Github<br>Git动画演示<br>SVN</p>
+<p>版本管理工具介绍—SVN篇</p>
+<p>正文来自<a href="https://github.com/jsfront/src/blob/master/qq.md本文转载" target="_blank" rel="noopener">https://github.com/jsfront/src/blob/master/qq.md本文转载</a></p>
+
       
 
       
@@ -516,8 +907,66 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/436_1.jpg" alt=""><br>
-        
+        <a id="more"></a>
+<p>最近看到<br>序言</p>
+<p>闲的无聊，看到一个段子网站的美女福利还不错，迫于福利加载太慢看的不过瘾，就想用Nodejs写个简单爬虫全部爬下来看多好….. 此处省略5000字…..</p>
+<p>准备</p>
+<p>要爬，首先得要有目标，我呢，就把目标锁定到了 某哈，然后呢就是用浏览器来分析分析其中的规律</p>
+<p>从中可以看到每一条段子都是一个 .joke-list-item, 当点击下一页的时候 url中地址的最后一位数就表示分页的页码。有些图片是缩略图，我们把缩略图和正常图的地址进行了比较，发现他们的地址格式是一样的，缩略图在small文件夹下，大图在big文件夹下。分析完了我们就可以写代码了。</p>
+<p>开始</p>
+<p>这个简单爬虫分两个部分，1、获取图片地址。2、进行下载。因为下载是一个耗时的操作，所以两个部分分开了，这样也有利于后期改动。</p>
+<p>导入必要的模块，使用cheerio 是第三方模块，可以使用 npm install cheerio 进行安装<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">var</span> http = <span class="keyword">require</span>(<span class="string">'http'</span>);			<span class="comment">// http 网路</span></span><br><span class="line">	<span class="keyword">var</span> cheerio = <span class="keyword">require</span>(<span class="string">'cheerio'</span>);	<span class="comment">// html 解析</span></span><br><span class="line">	<span class="keyword">var</span> fs = <span class="keyword">require</span>(<span class="string">"fs"</span>);				<span class="comment">// 流</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> queryHref = <span class="string">"http://www.haha.mx/topic/1/new/"</span>; 	<span class="comment">// 设置被查询的目标网址</span></span><br><span class="line">	<span class="keyword">var</span> querySearch = <span class="number">1</span>;								<span class="comment">// 设置分页位置</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> urls = [];			<span class="comment">// 所有待下载的图片地址</span></span><br><span class="line"></span><br><span class="line">这个是解析图片地址方法</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据url和参数获取分页内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;String&#125;： url</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;int&#125;： serach</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">&lt;pre&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHtml</span><span class="params">(href, serach)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pageData = <span class="string">""</span>;</span><br><span class="line">  <span class="keyword">var</span> req = http.get(href + serach, <span class="function"><span class="keyword">function</span><span class="params">(res)</span> </span>&#123;</span><br><span class="line">    res.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">    res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span><span class="params">(chunk)</span> </span>&#123;</span><br><span class="line">      pageData += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      $ = cheerio.load(pageData);</span><br><span class="line">      <span class="keyword">var</span> html = $(<span class="string">".joke-list-item .joke-main-content a img"</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; html.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> src = html[i].attribs.src;</span><br><span class="line">        <span class="comment">// 筛选部分广告，不是真的段子</span></span><br><span class="line">        <span class="keyword">if</span> (src.indexOf(<span class="string">"http://image.haha.mx"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">          urls.push(html[i].attribs.src)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个是下载图片的方法</p>
+<p>/**</p>
+<ul>
+<li>下载图片</li>
+<li>@param {String} imgurl：图片地址<br>*/</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downImg</span>(<span class="params">imgurl</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> narr = imgurl.replace(<span class="string">"http://image.haha.mx/"</span>, <span class="string">""</span>).split(<span class="string">"/"</span>)</span><br><span class="line">  </span><br><span class="line">  http.get(imgurl.replace(<span class="string">"/small/"</span>, <span class="string">"/big/"</span>), <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> imgData = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">//一定要设置response的编码为binary否则会下载下来的图片打不开</span></span><br><span class="line">    res.setEncoding(<span class="string">"binary"</span>);   </span><br><span class="line"></span><br><span class="line">    res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">      imgData += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> savePath = <span class="string">"./upload/topic1/"</span> + narr[<span class="number">0</span>]  + narr[<span class="number">1</span>] + narr[<span class="number">2</span>] + <span class="string">"_"</span> + narr[<span class="number">4</span>];</span><br><span class="line">      <span class="comment">// 保存图片</span></span><br><span class="line">      fs.writeFile(savePath, imgData, <span class="string">"binary"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(err);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好，到这里核心的东西就写完了，然后就是组装一下，让他运行起来</p>
+<p>附一个完整代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);			<span class="comment">// http 网路</span></span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);	<span class="comment">// html 解析</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);				<span class="comment">// 流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> queryHref = <span class="string">"http://www.haha.mx/topic/1/new/"</span>; 	<span class="comment">// 设置被查询的目标网址</span></span><br><span class="line"><span class="keyword">var</span> querySearch = <span class="number">1</span>;								<span class="comment">// 设置分页位置</span></span><br><span class="line"><span class="keyword">var</span> urls = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sumConut = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> reptCount = <span class="number">0</span>;		<span class="comment">// 重复的</span></span><br><span class="line"><span class="keyword">var</span> downCount = <span class="number">0</span>;		<span class="comment">// 实际下载的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据url和参数获取分页内容</span></span><br><span class="line"><span class="comment"> * @param &#123;String&#125;： url</span></span><br><span class="line"><span class="comment"> * @param &#123;int&#125;： serach</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHtml</span>(<span class="params">href, serach</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"正在获取第 "</span>+serach + <span class="string">" 页的图片"</span>);</span><br><span class="line">	<span class="keyword">var</span> pageData = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">var</span> req = http.get(href + serach, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">		res.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">		res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">			pageData += chunk;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			$ = cheerio.load(pageData);</span><br><span class="line">			<span class="keyword">var</span> html = $(<span class="string">".joke-list-item .joke-main-content a img"</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; html.length; i++) &#123;</span><br><span class="line">				<span class="keyword">var</span> src = html[i].attribs.src;</span><br><span class="line">				<span class="comment">// 筛选部分广告，不是真的段子</span></span><br><span class="line">				<span class="keyword">if</span> (src.indexOf(<span class="string">"http://image.haha.mx"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">					urls.push(html[i].attribs.src)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 递归调用</span></span><br><span class="line">			<span class="keyword">if</span> (serach &lt; pagemax) &#123;</span><br><span class="line">				getHtml(href, ++serach);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">"图片链接获取完毕！"</span>);</span><br><span class="line">				sumConut = urls.length;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">"链接总数量："</span> + urls.length);</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">"开始下载......"</span>);</span><br><span class="line">				downImg(urls.shift());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li>下载图片</li>
+<li>@param {String} imgurl：图片地址<br>*/</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downImg</span>(<span class="params">imgurl</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> narr = imgurl.replace(<span class="string">"http://image.haha.mx/"</span>, <span class="string">""</span>).split(<span class="string">"/"</span>)</span><br><span class="line">	<span class="comment">// 做一步优化，如果存在文件，则不下载</span></span><br><span class="line">	<span class="keyword">var</span> filename = <span class="string">"./upload/topic1/"</span> + narr[<span class="number">0</span>]  + narr[<span class="number">1</span>] + narr[<span class="number">2</span>] + <span class="string">"_"</span> + narr[<span class="number">4</span>];</span><br><span class="line">	fs.exists(filename, <span class="function"><span class="keyword">function</span>(<span class="params">b</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!b) &#123;</span><br><span class="line">			<span class="comment">// 文件不存则进行 下载</span></span><br><span class="line">			http.get(imgurl.replace(<span class="string">"/small/"</span>, <span class="string">"/big/"</span>), <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">var</span> imgData = <span class="string">""</span>;</span><br><span class="line">				<span class="comment">//一定要设置response的编码为binary否则会下载下来的图片打不开</span></span><br><span class="line">				res.setEncoding(<span class="string">"binary"</span>); </span><br><span class="line">		</span><br><span class="line">				res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">					imgData += chunk;</span><br><span class="line">				&#125;);</span><br><span class="line">				</span><br><span class="line">				res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">					<span class="keyword">var</span> savePath = <span class="string">"./upload/topic1/"</span> + narr[<span class="number">0</span>]  + narr[<span class="number">1</span>] + narr[<span class="number">2</span>] + <span class="string">"_"</span> + narr[<span class="number">4</span>];</span><br><span class="line">					fs.writeFile(savePath, imgData, <span class="string">"binary"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">						<span class="keyword">if</span>(err) &#123;</span><br><span class="line">							<span class="built_in">console</span>.log(err);</span><br><span class="line">						&#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">							<span class="built_in">console</span>.log(narr[<span class="number">0</span>]  + narr[<span class="number">1</span>] + narr[<span class="number">2</span>] + <span class="string">"_"</span> + narr[<span class="number">4</span>]);</span><br><span class="line">							<span class="keyword">if</span> (urls.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">								downImg(urls.shift());</span><br><span class="line">								downCount++;</span><br><span class="line">								<span class="built_in">console</span>.log(<span class="string">"剩余图片数量...."</span>);</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;);</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 统计重复的图片</span></span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"该图片已经存在重复."</span>);</span><br><span class="line">			reptCount++;</span><br><span class="line">			<span class="keyword">if</span> (urls.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				downImg(urls.shift());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (urls.length &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"下载完毕"</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"重复图片："</span> + reptCount);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"实际下载："</span> + downCount);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pagemax = <span class="number">30</span>;		<span class="comment">// 获取到多少页的内容</span></span><br><span class="line"><span class="keyword">var</span> startindex = <span class="number">1</span>;		<span class="comment">// 从多少页开始获取</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"开始获取图片连接"</span>);</span><br><span class="line">	getHtml(queryHref, startindex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
+<p>因为nodejs是异步的，所以在 start 方法中的for之后调用下载是不行，这个时候显示的 urls 中是没有数据的。</p>
+<p>所以就是在 getHtml 中 等所有的连接分析完毕之后在调用 downImg，downImg下载完成之后在进行下一个下载。</p>
+<p>项目目录很简单，如图：</p>
+<p>然后我们切换到项目目录，执行 node app , 然后就静静的等待把，每次下载完一个会有对应的文件名打印出来的。</p>
+<p>最后会出现 下载完毕！，之后就……. 你懂得……</p>
+<p>这个是一个很简单的，当然后续你可以加上数据库，数据更新之类的…..</p>
+<p>放几张我爬到的图</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>注意前方高能</p>
+<p>注意前方高能</p>
+<p>注意前方高能</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p><img src="https://qn.tyty.me/20.jpg" alt=""></p>
+<p><img src="https://qn.tyty.me/201.jpg" alt=""></p>
+<p>嘘… 不要告诉别人….</p>
+<p>原文地址:<a href="https://zhuanlan.zhihu.com/p/24730075" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24730075</a></p>
+
       
 
       
@@ -589,7 +1038,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -687,14 +1136,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -711,18 +1152,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -731,11 +1160,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -747,7 +1176,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -755,15 +1184,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,7 +1208,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

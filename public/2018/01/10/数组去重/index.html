@@ -8,21 +8,23 @@
   <link rel="dns-prefetch" href="https://wangdabaoqq.github.io/hexo-back-up">
   <title>&#39;javascript-数组去重&#39; | 王西柚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="js,Array">
+  <meta name="description" content="Javascipt数组去重方法一: 双循环（时间复杂度比较高, 性能一般。）测试用例一  123456789101112131415161718192021222324var arr = [1, 2, 3, 1];function unique (arr) &amp;#123;  var newArr = [];  var len = arr.length;  var isRepeat;  for (">
+<meta name="keywords" content="js,Array">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;javascript-数组去重&#39;">
 <meta property="og:url" content="https://wangdabaoqq.github.io/hexo-back-up/2018/01/10/数组去重/index.html">
 <meta property="og:site_name" content="王西柚">
+<meta property="og:description" content="Javascipt数组去重方法一: 双循环（时间复杂度比较高, 性能一般。）测试用例一  123456789101112131415161718192021222324var arr = [1, 2, 3, 1];function unique (arr) &amp;#123;  var newArr = [];  var len = arr.length;  var isRepeat;  for (">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://qn.tyty.me/444H.jpg">
 <meta property="og:image" content="https://qn.tyty.me/2018-01-12%2011-56-14%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
 <meta property="og:image" content="https://qn.tyty.me/2018-01-12%2011-51-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
 <meta property="og:image" content="https://qn.tyty.me/2018-01-12%2012-01-00%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
 <meta property="og:image" content="https://qn.tyty.me/2018-01-12%2014-41-01%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-<meta property="og:updated_time" content="2018-03-02T02:41:09.000Z">
+<meta property="og:updated_time" content="2019-01-31T03:04:07.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;javascript-数组去重&#39;">
-<meta name="twitter:image" content="https://qn.tyty.me/444H.jpg">
+<meta name="twitter:description" content="Javascipt数组去重方法一: 双循环（时间复杂度比较高, 性能一般。）测试用例一  123456789101112131415161718192021222324var arr = [1, 2, 3, 1];function unique (arr) &amp;#123;  var newArr = [];  var len = arr.length;  var isRepeat;  for (">
+<meta name="twitter:image" content="https://qn.tyty.me/2018-01-12%2011-56-14%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
   
     <link rel="alternative" href="/atom.xml" title="王西柚" type="application/atom+xml">
   
@@ -201,7 +203,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://qn.tyty.me/444H.jpg" alt=""><br><a id="more"></a> </p>
+        <a id="more"></a> 
 <h2 id="Javascipt数组去重"><a href="#Javascipt数组去重" class="headerlink" title="Javascipt数组去重"></a>Javascipt数组去重</h2><h3 id="方法一-双循环（时间复杂度比较高-性能一般。）"><a href="#方法一-双循环（时间复杂度比较高-性能一般。）" class="headerlink" title="方法一: 双循环（时间复杂度比较高, 性能一般。）"></a>方法一: 双循环（时间复杂度比较高, 性能一般。）</h3><h4 id="测试用例一"><a href="#测试用例一" class="headerlink" title="测试用例一"></a>测试用例一</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">var</span> isRepeat;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    isPepeat = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// console.log(arr[i], 'arr[i]');</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="comment">// console.log(arr[j], '111');</span></span><br><span class="line">      <span class="built_in">console</span>.log(arr[i], <span class="string">'arr[i]'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(arr[j], <span class="string">'arr[j]'</span>);         </span><br><span class="line">      <span class="keyword">if</span> (arr[i] === arr[j]) &#123;</span><br><span class="line">        isPepeat = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!isPepeat) &#123;</span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [2, 3, 1]</span></span><br></pre></td></tr></table></figure>
 <h4 id="测试用例二"><a href="#测试用例二" class="headerlink" title="测试用例二"></a>测试用例二</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = arr.length;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="comment">// console.log(j);</span></span><br><span class="line">      <span class="keyword">if</span> (arr[i] === arr[j]) &#123;   </span><br><span class="line">        j = ++i;  <span class="comment">//  不理解这里的意思,恕我愚钝</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(arr[i]);</span></span><br><span class="line">    newArr.push(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr)); <span class="comment">//  [2, 3, 1]</span></span><br></pre></td></tr></table></figure>
 <p>  tip: j = ++i;等价于 j = j + 1; i = i + 1；<br>       整体思路就是如果是重复元素,则跳过重复元素,不对其进行push操作。</p>
@@ -337,7 +339,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -435,14 +437,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -459,18 +453,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -479,11 +461,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,7 +477,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,15 +485,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,7 +509,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

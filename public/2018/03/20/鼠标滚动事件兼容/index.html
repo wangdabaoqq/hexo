@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://wangdabaoqq.github.io/hexo-back-up">
   <title>&#39;mousewheel与DOMMouseScroll&#39; | 王西柚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="事件兼容">
+  <meta name="description" content="mousewheel-DOMMouseScroll  最近在写vue的项目中涉及到了鼠标滚轮事件,之前没有用到过,所以踩了踩坑,想了想就写了一篇关于滚轮事件的文章。 踩坑  起先我是不知道关于滚轮事件是有兼容的,当时我只写了@mousewheel一种方法,满心欢喜去迎接马上到来的幸福生活。  先测了测chrome,没有问题完美实现。接下来是firefox,哎没有反应,我想了下肯定是姿势不对,再来">
+<meta name="keywords" content="事件兼容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;mousewheel与DOMMouseScroll&#39;">
 <meta property="og:url" content="https://wangdabaoqq.github.io/hexo-back-up/2018/03/20/鼠标滚动事件兼容/index.html">
 <meta property="og:site_name" content="王西柚">
+<meta property="og:description" content="mousewheel-DOMMouseScroll  最近在写vue的项目中涉及到了鼠标滚轮事件,之前没有用到过,所以踩了踩坑,想了想就写了一篇关于滚轮事件的文章。 踩坑  起先我是不知道关于滚轮事件是有兼容的,当时我只写了@mousewheel一种方法,满心欢喜去迎接马上到来的幸福生活。  先测了测chrome,没有问题完美实现。接下来是firefox,哎没有反应,我想了下肯定是姿势不对,再来">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/1234.jpg">
-<meta property="og:updated_time" content="2018-07-10T08:22:38.138Z">
+<meta property="og:updated_time" content="2019-01-31T03:04:01.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;mousewheel与DOMMouseScroll&#39;">
-<meta name="twitter:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/1234.jpg">
+<meta name="twitter:description" content="mousewheel-DOMMouseScroll  最近在写vue的项目中涉及到了鼠标滚轮事件,之前没有用到过,所以踩了踩坑,想了想就写了一篇关于滚轮事件的文章。 踩坑  起先我是不知道关于滚轮事件是有兼容的,当时我只写了@mousewheel一种方法,满心欢喜去迎接马上到来的幸福生活。  先测了测chrome,没有问题完美实现。接下来是firefox,哎没有反应,我想了下肯定是姿势不对,再来">
   
     <link rel="alternative" href="/atom.xml" title="王西柚" type="application/atom+xml">
   
@@ -197,7 +198,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/1234.jpg" alt="123"><br><a id="more"></a></p>
+        <a id="more"></a>
 <h2 id="mousewheel-DOMMouseScroll"><a href="#mousewheel-DOMMouseScroll" class="headerlink" title="mousewheel-DOMMouseScroll"></a>mousewheel-DOMMouseScroll</h2><p>  最近在写vue的项目中涉及到了鼠标滚轮事件,之前没有用到过,所以踩了踩坑,想了想就写了一篇关于滚轮事件的文章。</p>
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>  起先我是不知道关于滚轮事件是有兼容的,当时我只写了@mousewheel一种方法,满心欢喜去迎接马上到来的幸福生活。<br>  先测了测chrome,没有问题完美实现。接下来是firefox,哎没有反应,我想了下肯定是姿势不对,再来一遍,漂亮,还是<br>  没有反应,这个时候我想到了可能是有兼容,百度了下发现确实是有兼容,原来兼容分为两种,一种是firefox,一种是其他。<br>  其他用到的是<code>mousewheel</code>而firefox用的是<code>DOMMouseScroll</code>。<br>  下面是用到的部分代码<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">handleScroll (e) &#123;</span><br><span class="line">  <span class="keyword">let</span> type = e.type;</span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'DOMMouseScroll'</span> || type === <span class="string">'mousewheel'</span>) &#123;</span><br><span class="line">    eventDelta = (e.wheelDelta) ? e.wheelDelta : -(e.detail || <span class="number">0</span>) * <span class="number">40</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (eventDelta &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="built_in">Math</span>.min(<span class="number">0</span>, <span class="keyword">this</span>.left + eventDelta);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ($containerWidth - padding &lt; $wrapperWidth) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.left &lt; -($wrapperWidth - $containerWidth + padding)) &#123;</span><br><span class="line">        <span class="keyword">this</span>.left = <span class="keyword">this</span>.left;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.left = <span class="built_in">Math</span>.max(<span class="keyword">this</span>.left + eventDelta, $containerWidth - $wrapperWidth - padding);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.left = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>  我要说的是其他的滚动是根据<code>e.wheelDelta</code>作为判断条件,其中向上滚动是120,而向下滚动则取反是-120。而firefox判断滚轮方向<br>  <code>e.detail</code>,向上判断是-3,向上则取反为3。</p>
@@ -300,7 +301,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -398,14 +399,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -422,18 +415,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -442,11 +423,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,7 +439,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,15 +447,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,7 +471,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

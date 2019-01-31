@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://wangdabaoqq.github.io/hexo-back-up">
   <title>&#39;Javascript数组方法(ES5-ES6)&#39; | 王西柚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="javascript,Array方法">
+  <meta name="description" content="join() ES5join(speparator):将数组的元素组起一个字符串,spearator为分隔符,省略的话则用默认用逗号为分隔符,该方法只接收一个参数,即分隔符。1234var arr = [1,2,3];console.log(arr.join());console.log(arr.join(&apos;-&apos;));console.log(arr); 通过join()方法可以重复字符串,只需传">
+<meta name="keywords" content="javascript,Array方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;Javascript数组方法(ES5-ES6)&#39;">
 <meta property="og:url" content="https://wangdabaoqq.github.io/hexo-back-up/2017/09/20/Javascript的数组方法/index.html">
 <meta property="og:site_name" content="王西柚">
+<meta property="og:description" content="join() ES5join(speparator):将数组的元素组起一个字符串,spearator为分隔符,省略的话则用默认用逗号为分隔符,该方法只接收一个参数,即分隔符。1234var arr = [1,2,3];console.log(arr.join());console.log(arr.join(&apos;-&apos;));console.log(arr); 通过join()方法可以重复字符串,只需传">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/445_1.jpg">
-<meta property="og:updated_time" content="2018-07-10T08:01:46.247Z">
+<meta property="og:updated_time" content="2019-01-31T03:04:49.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;Javascript数组方法(ES5-ES6)&#39;">
-<meta name="twitter:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/445_1.jpg">
+<meta name="twitter:description" content="join() ES5join(speparator):将数组的元素组起一个字符串,spearator为分隔符,省略的话则用默认用逗号为分隔符,该方法只接收一个参数,即分隔符。1234var arr = [1,2,3];console.log(arr.join());console.log(arr.join(&apos;-&apos;));console.log(arr); 通过join()方法可以重复字符串,只需传">
   
     <link rel="alternative" href="/atom.xml" title="王西柚" type="application/atom+xml">
   
@@ -197,7 +198,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/445_1.jpg" alt=""><br><a id="more"></a></p>
+        <a id="more"></a>
 <h2 id="join-ES5"><a href="#join-ES5" class="headerlink" title="join() ES5"></a>join() ES5</h2><p>join(speparator):将数组的元素组起一个字符串,spearator为分隔符,省略的话则用默认用逗号为分隔符,该方法只接收一个参数,即分隔符。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.join());</span><br><span class="line"><span class="built_in">console</span>.log(arr.join(<span class="string">'-'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
 <p>通过join()方法可以重复字符串,只需传入字符串以及重复的次数,就能返回重复后的字符串,函数如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeatString</span>(<span class="params">str, n</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Array</span>(n + <span class="number">1</span>).join(str));</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Array</span>(n + <span class="number">1</span>).join(str);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(repeatString(<span class="string">'abc'</span>, <span class="number">3</span>)); <span class="comment">// abcabcabc</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="push-和pop-ES5"><a href="#push-和pop-ES5" class="headerlink" title="push()和pop() ES5"></a>push()和pop() ES5</h2><p>push()：可以接收任意数量的参数，把他们逐个添加到数组末尾,并返回修改后数组的长度。<br>pop()：数组末尾移除最后,减少数组的length值,然后返回移除的项。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'mi'</span>, <span class="string">'to'</span>, <span class="string">'you'</span>];</span><br><span class="line"><span class="keyword">var</span> count = arr.push(<span class="string">'yao'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(count);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="keyword">var</span> sd = arr.pop();</span><br><span class="line"><span class="built_in">console</span>.log(sd);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
@@ -483,7 +484,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -581,14 +582,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -605,18 +598,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -625,11 +606,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,7 +622,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,15 +630,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,7 +654,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>

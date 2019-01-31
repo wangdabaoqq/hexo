@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://wangdabaoqq.github.io/hexo-back-up">
   <title>&#39;我所知道的apply与call&#39; | 王西柚</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="js,方法">
+  <meta name="description" content="我所知道的apply与call 在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于js儿子-call与apply的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过">
+<meta name="keywords" content="js,方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;我所知道的apply与call&#39;">
 <meta property="og:url" content="https://wangdabaoqq.github.io/hexo-back-up/2018/06/13/我所知道的apoly与call/index.html">
 <meta property="og:site_name" content="王西柚">
+<meta property="og:description" content="我所知道的apply与call 在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于js儿子-call与apply的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/cat.jpg">
-<meta property="og:updated_time" content="2018-07-25T07:50:23.402Z">
+<meta property="og:updated_time" content="2019-01-31T03:04:18.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;我所知道的apply与call&#39;">
-<meta name="twitter:image" content="https://wangdabaoqq.github.io/hexo-back-up/assets/img/cat.jpg">
+<meta name="twitter:description" content="我所知道的apply与call 在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于js儿子-call与apply的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过">
   
     <link rel="alternative" href="/atom.xml" title="王西柚" type="application/atom+xml">
   
@@ -197,7 +198,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wangdabaoqq.github.io/hexo-back-up/assets/img/cat.jpg" alt="Cat"><br><a id="more"></a></p>
+        <a id="more"></a>
 <h2 id="我所知道的apply与call"><a href="#我所知道的apply与call" class="headerlink" title="我所知道的apply与call"></a>我所知道的apply与call</h2><blockquote>
 <p>在我打算写这篇文章之前我徘徊了两分钟(没错就是两分钟), 徘徊的原因是我觉得以我当前的对于<code>js儿子-call与apply</code>的掌握, 还不足以我能够很好的去解释给自己或者读者去听, 尤其是在看了一些书里面讲到了很多关于apply与call的妙用. 很神奇没有想到还能这么用. 但写了这篇文章的一个原因是我蛮久没有写了博客, 也该写了(尽力微笑…). 另一个原因是我想通过我的角度去说下我对于apply和call的看法. 其实在刚刚认识call或者apply的时候, 我在想这两个货是到底干嘛的, 在没有认识他们之前, 我也完成了某些功能的开发呀, 这两个货色的作用到底是什么, 我觉得我有必要去好好了解下. </p>
 </blockquote>
@@ -309,7 +310,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 王西柚
+    		&copy; 2019 王西柚
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -407,14 +408,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
@@ -431,18 +424,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">综合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">关于this</a>
               </li>
              
@@ -451,11 +432,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">music</a>
+                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">年中总结</a>
+                <a href="javascript:void(0)" class="js-tag color3">综合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,7 +448,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color1">music</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,15 +456,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">移动端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,7 +480,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件兼容</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Array方法</a>
               </li>
             
             <div class="clearfix"></div>
