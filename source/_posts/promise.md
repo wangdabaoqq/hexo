@@ -9,9 +9,8 @@ tags:
 brief: "Promise"
 reward: true
 ---
-<!--more-->
 <h2>1.Promise的立即执行性 </h2>
-	
+	<!--more-->
 	var p = new Promise(function(resolve, reject){
 	  console.log("create a promise");
 	  resolve("success");

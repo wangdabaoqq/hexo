@@ -5,8 +5,8 @@ tags:
 	- 综合
 	- css3
 ---
+Sass基础——Rem与Px的转换
 <!--more-->
-	Sass基础——Rem与Px的转换
 rem是CSS3中新增加的一个单位值，他和em单位一样，都是一个相对单位。不同的是em是相对于元素的父元素的font-size进行计算；rem是相对于根元素html的font-size进行计算。这样一来rem就绕开了复杂的层级关系，实现了类似于em单位的功能。
 
 <h2>Rem的使用</h2>
