@@ -124,8 +124,8 @@
         var data = res.data[j];
         var liTmpl = "";
         // for (var i = 0, len = data.link.length; i < len; i++) {
-          var minSrc = '../Img/' + data.id + '.min.jpg';
-          var src = '../Img/' + data.id + '.jpg';
+          var minSrc = 'https://raw.githubusercontent.com/wangdabaoqq/hexo/master/source/Img' + data.id + '.min.jpg';
+          var src = 'https://raw.githubusercontent.com/wangdabaoqq/hexo/master/source/Img' + data.id + '.jpg';
           var type = data.type;
           var wrapText = data.caption || {};
           var realText = wrapText.text || "0.0";
