@@ -27,7 +27,7 @@ reward: true
 这个简单爬虫分两个部分，1、获取图片地址。2、进行下载。因为下载是一个耗时的操作，所以两个部分分开了，这样也有利于后期改动。
 
 导入必要的模块，使用cheerio 是第三方模块，可以使用 npm install cheerio 进行安装
-```
+```js
 	var http = require('http');			// http 网路
 	var cheerio = require('cheerio');	// html 解析
 	var fs = require("fs");				// 流
@@ -104,7 +104,7 @@ function downImg(imgurl) {
 好，到这里核心的东西就写完了，然后就是组装一下，让他运行起来
 
 附一个完整代码：
-```
+```js
 var http = require('http');			// http 网路
 var cheerio = require('cheerio');	// html 解析
 var fs = require("fs");				// 流
@@ -163,7 +163,7 @@ function getHtml(href, serach) {
  * @param {String} imgurl：图片地址
  */
 
-```
+```js
 function downImg(imgurl) {
 	var narr = imgurl.replace("http://image.haha.mx/", "").split("/")
 	// 做一步优化，如果存在文件，则不下载
@@ -290,12 +290,20 @@ start();
 。
 
 
-![](https://qn.tyty.me/20.jpg)
-
-
-![](https://qn.tyty.me/201.jpg)
 
 嘘... 不要告诉别人....
 
 原文地址:https://zhuanlan.zhihu.com/p/24730075
+
+```js
+<!-----------------更新----------------------->
+```
+隔了挺长时间的, 我又整理了下代码。
+原作者的代码我测试了下, 发现已经不能使用了, 我整理了下, 测试已过了。
+代码我提交到<a href="https://github.com/wangdabaoqq/nodeImage">github</a>
+
+贴下图
+![图一](https://raw.githubusercontent.com/wangdabaoqq/nodeImage/master/img/2906885_c480745a9a03a497dae9e9fcc9a4b988_1572586050.jpg)
+
+![图二](https://raw.githubusercontent.com/wangdabaoqq/nodeImage/master/img/2907118_2cba6e116b5df38dc8ab297b64a0a4e0_1572761560.jpg)
 

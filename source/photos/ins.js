@@ -110,29 +110,41 @@
         addMask($videoImg[i]);
       }
     };
+    function add0(m){ return m < 10 ?'0' + m: m };
+    function getTime(timeString) {
+      var time = new Date(parseInt(timeString) * 1000);
+      var y = time.getFullYear();
+      var m = time.getMonth()+1;
+      var d = time.getDate();
+      return y+'-'+add0(m)+'-'+add0(d);
+    };
     var render = function render(res) {
       var ulTmpl = "";
-      for (var j = 0, len2 = res.list.length; j < len2; j++) {
-        var data = res.list[j].arr;
+      for (var j = 0, len2 = res.data.length; j < len2; j++) {
+        var data = res.data[j];
         var liTmpl = "";
-        for (var i = 0, len = data.link.length; i < len; i++) {
-          var minSrc = 'https://raw.githubusercontent.com/wangdabaoqq/hexo/master/min_photos/' + data.link[i];
-          var src = 'https://raw.githubusercontent.com/wangdabaoqq/hexo/master/photos/' + data.link[i];
-          var type = data.type[i];
+        // for (var i = 0, len = data.link.length; i < len; i++) {
+          var minSrc = '../Img/' + data.id + '.min.jpg';
+          var src = '../Img/' + data.id + '.jpg';
+          var type = data.type;
+          var wrapText = data.caption || {};
+          var realText = wrapText.text || "0.0";
           var target = src + (type === 'video' ? '.mp4' : '.jpg');
           src += '';
 
           liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
                 <a href="' + src + '" itemprop="contentUrl" data-size="1080x1080" data-type="' + type + '" data-target="' + src + '">\
                   <img class="reward-img" data-type="' + type + '" data-src="' + minSrc + '" src="/hexo-back-up/assets/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
-                </a>\
-                <figcaption style="display:none" itemprop="caption description">' + data.text[i] + '</figcaption>\
+                  <h1 class="year">'+ getTime(data.created_time) +'</h1>\
+                  </a>\
+                <figcaption style="display:none" itemprop="caption description">' + realText + '</figcaption>\
             </figure>';
+            ulTmpl = ulTmpl +  liTmpl
         }
-        ulTmpl = ulTmpl + '<section class="archives album"><h1 class="year">' + data.year + '年<em>' + data.month + '月</em></h1>\
-        <ul class="img-box-ul">' + liTmpl + '</ul>\
-        </section>';
-      }
+        // ulTmpl = ulTmpl + '<section class="archives album"><h1 class="year">' + data.year + '年<em>' + data.month + '月</em></h1>\
+        // <ul class="img-box-ul">' + liTmpl + '</ul>\
+        // </section>';
+      // }
       document.querySelector('.instagram').innerHTML = '<div class="photos" itemscope="" itemtype="http://schema.org/ImageGallery">' + ulTmpl + '</div>';
       createVideoIncon();
       _view2.default.init();
@@ -169,7 +181,7 @@
     function loadData(success) {
       if (!searchData) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', './data.json?t=' + +new Date(), true);
+        xhr.open('GET', './ins.json?t=' + +new Date(), true);
 
         xhr.onload = function() {
           if (this.status >= 200 && this.status < 300) {
