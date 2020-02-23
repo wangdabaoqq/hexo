@@ -10,7 +10,7 @@ var baseUrl = 'https://api.instagram.com/v1/users/5601660036/media/recent/?acces
  * @param {int}： serach
  */
 function getHtml(href, serach) {
-	request({uri: href, 'proxy':'http://localhost:1087'}, function (error, response, body) {
+	request({uri: href, 'proxy':'http://localhost:1088'}, function (error, response, body) {
         // console.log(body)
         // $ = cheerio.load(body);
         // console.log(body)
@@ -62,7 +62,7 @@ function getHtml(href, serach) {
 }
 function downLoad (url, file) {
   request.head(url, function (err, res, body) {
-    request({uri: url,'proxy':'http://localhost:1087'}).pipe(fs.createWriteStream('../source/Img' + "/" + file + ".jpg"))
+    request({uri: url,'proxy':'http://localhost:1088'}).pipe(fs.createWriteStream('../source/Img' + "/" + file + ".jpg"))
   })
 }
 
