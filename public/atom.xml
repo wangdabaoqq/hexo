@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>王西柚</title>
+  <title>o.o</title>
   <icon>https://www.gravatar.com/avatar/7d474fb471782a29372082c2d2649d01</icon>
   <subtitle>小儿无名,不耻而学。</subtitle>
   <link href="/hexo-back-up/atom.xml" rel="self"/>
   
   <link href="https://wangdabaoqq.github.io/hexo-back-up/"/>
-  <updated>2019-11-29T09:11:06.575Z</updated>
+  <updated>2020-03-04T02:48:00.539Z</updated>
   <id>https://wangdabaoqq.github.io/hexo-back-up/</id>
   
   <author>
-    <name>王西柚</name>
+    <name>o.o</name>
     <email>614692339@qq.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&#39;复工记&#39;</title>
+    <link href="https://wangdabaoqq.github.io/hexo-back-up/2020/03/03/%E5%A4%8D%E5%B7%A5%E8%AE%B0/"/>
+    <id>https://wangdabaoqq.github.io/hexo-back-up/2020/03/03/复工记/</id>
+    <published>2020-03-03T04:00:00.000Z</published>
+    <updated>2020-03-04T02:48:00.539Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="复工记"><a href="#复工记" class="headerlink" title="复工记"></a>复工记</h2><blockquote><p>复工的第二天, 本应该昨天写的, 因为一些原因, 拖到今天了。 因为疫情的原因, 导致开工的时间一拖再拖。也希望疫情可以快点过去。 说下我近况, 应该有好几个月没有写过博客了, 中间想过很多次要去写下, 写的时候就会无从下手。</p></blockquote><a id="more"></a><h2 id="个人近况"><a href="#个人近况" class="headerlink" title="个人近况"></a>个人近况</h2><p>之前提到的<code>underscore.js</code>源码解析, 在家的时候, 我也一直在持续产出, 我觉得读源码真的可以学到很多<code>奇技淫巧</code>, 而且设计的函数, 应用面既广泛、考虑事物的角度很多元。当然随之而来的就是读源码是一个长期性的任务规划, 不可能一蹴而就, 而且肯定会遇到不理解的地方。这些问题都是客观存在的, 需要自己去解决的。<br>但是当你明白后, 就会觉得异常的舒服, 这就是所谓的痛并快乐。<br><code>underscore.js</code>看了百分之60左右吧, 有些函数方法, 需要反复去看, 去了解。</p><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>当前我还是会把<code>underscore.js</code>读完, 读完我会专门出一个<code>underscore</code>系列, 更加细致的去写下, 里面一些有意思的函数。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;复工记&quot;&gt;&lt;a href=&quot;#复工记&quot; class=&quot;headerlink&quot; title=&quot;复工记&quot;&gt;&lt;/a&gt;复工记&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;复工的第二天, 本应该昨天写的, 因为一些原因, 拖到今天了。 因为疫情的原因, 导致开工的时间一拖再拖。也希望疫情可以快点过去。 说下我近况, 应该有好几个月没有写过博客了, 中间想过很多次要去写下, 写的时候就会无从下手。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="总结" scheme="https://wangdabaoqq.github.io/hexo-back-up/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>&#39; 2019年中总结&#39;</title>
