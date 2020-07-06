@@ -8,7 +8,7 @@ subtitle: 小儿无名,不耻而学。
 description: 0.0,昏昏沉沉,不知其所以然.
 author: o.o
 email: 614692339@qq.com
-keywords: "前端,js,jquery,javascript,html5,0.0,0.0技术,搞技术的0.0,技术不到家的0.0,程序媛,github,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,西柚王"
+keywords: "前端,js,jquery,javascript,html5,0.0,0.0技术,搞技术的0.0,技术不到家的0.0,github,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,西柚王"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -138,7 +138,7 @@ baidusitemap:
  #Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/wangdabaoqq/me.git
+  repository: git@github.com:wangdabaoqq/me.git
   branch: master
 
 # deploy:
