@@ -10,7 +10,7 @@ reward: true
 ---
 ## 二分查找
 > 最近一直在看underscore.js, 刚好有看到我比较感兴趣的地方, 里面涉及到了二分查找, 索性拿出来记录下。
-
+<!--more-->
 ## underscore.js之sortedIndex
 ```js
 _.sortedIndex = function(array, obj, iteratee, context) {

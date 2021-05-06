@@ -13,8 +13,9 @@ function getHtml(href, serach) {
 	request({uri: href, 'proxy':'http://localhost:1088'}, function (error, response, body) {
         // console.log(body)
         // $ = cheerio.load(body);
-        // console.log(body)
+        console.log(body)
         let datas = JSON.parse(body).data
+        console.log(datas, 1111)
         // console.log(datas, 111)
         datas.forEach(element => {
           // console.log(element, 22)
