@@ -112,6 +112,7 @@
     };
     var render = function render(res) {
       var ulTmpl = "";
+      console.log(res)
       for (var j = 0, len2 = res.list.length; j < len2; j++) {
         var data = res.list[j].arr;
         var liTmpl = "";
