@@ -17,5 +17,5 @@ jobs:
       - uses: yrpang/github-actions-hexo@v1.3
         with:
           deploykey: ${{secrets.ACCESS_TOKEN}}
-          username: PUBLISHER_USER_NAME
-          email: PUBLISHER_EMAIL_ADDRESS
+          username: wangdabaoqq
+          email: 614692339@qq.com
