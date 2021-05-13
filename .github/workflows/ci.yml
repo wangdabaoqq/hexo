@@ -11,7 +11,6 @@ jobs:
       - name: Install and Build
         run: |
           npm i -g hexo-cli
-          npm install
           npm i
           hexo clean
           hexo g
