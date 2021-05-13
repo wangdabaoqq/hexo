@@ -1,21 +1,23 @@
-
-
-name: Hexo Build and Deploy
-
-on: [push]
+name: deploying Hexo project to GitHub pages
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
-      - uses: yrpang/github-actions-hexo@v1.3
-        with:
-          deploykey: ${{secrets.ACCESS_TOKEN}}
-          username: wangdabaoqq
-          email: 614692339@qq.com
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Build and Deploy
+        uses: theme-keep/hexo-deploy-github-pages-action@master
+        env:
+          PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          PUBLISH_REPOSITORY: wangdabaoqq/hexo
+          BRANCH: gh-pages
+          PUBLISH_DIR: ./public
+
+
+
