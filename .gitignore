@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-.deploy_git/
 # Editor directories and files
 .idea
 .vscode
