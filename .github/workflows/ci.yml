@@ -1,17 +1,22 @@
-
-name: Build and Deploy
+name: Hexo Deploy GitHub Pages
 on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
+    - name: Checkout
+      uses: actions/checkout@master
 
-      - name: Deploy 🚀
-        uses: theme-keep/hexo-deploy-github-pages-action@master
-        with:
-          PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          PUBLISH_REPOSITORY: wangdabaoqq/hexo
-          branch: gh-pages # The branch the action should deploy to.
-          PUBLISH_DIR: ./public # The folder the action should deploy.
+    - name: Build and Deploy
+      uses: theme-keep/hexo-deploy-github-pages-action@master
+      env:
+        PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+        # The repository the action should deploy to.
+        PUBLISH_REPOSITORY: wangdabaoqq/hexo
+
+        # The branch the action should deploy to.
+        BRANCH: gh-pages
+  
+        # The folder the action should deploy.
+        PUBLISH_DIR: ./public 
