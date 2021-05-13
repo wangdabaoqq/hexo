@@ -15,6 +15,6 @@ jobs:
         uses: theme-keep/hexo-deploy-github-pages-action@master
         env:
           PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          PUBLISH_REPOSITORY: theme-keep/site
+          PUBLISH_REPOSITORY: wangdabaoqq/hexo
           BRANCH: gh-pages
           PUBLISH_DIR: ./public
