@@ -10,8 +10,8 @@ brief: "ES5-ES6"
 reward: true
 ---
 ## join() ES5
-<!--more-->
 join(speparator):将数组的元素组起一个字符串,spearator为分隔符,省略的话则用默认用逗号为分隔符,该方法只接收一个参数,即分隔符。
+<!--more-->
 ```js
   var arr = [1,2,3];
   console.log(arr.join());
