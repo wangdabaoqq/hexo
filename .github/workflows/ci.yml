@@ -11,17 +11,19 @@ jobs:
       matrix:
         node-version: [14.x, 16.x, 18.x, 20.x]
     steps:
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-        uses: actions/checkout@master
-      - name: Build and Deploy
-        uses: theme-keep/hexo-deploy-github-pages-action@master
-        env:
-          PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          PUBLISH_REPOSITORY: wangdabaoqq/hexo
-          BRANCH: gh-pages
-          PUBLISH_DIR: ./public
+    - name: Checkoutss
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Checkout  
+      uses: actions/checkout@master
+    - name: Build and Deploy
+      uses: theme-keep/hexo-deploy-github-pages-action@master
+      env:
+        PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        PUBLISH_REPOSITORY: wangdabaoqq/hexo
+        BRANCH: gh-pages
+        PUBLISH_DIR: ./public
 
 
 
