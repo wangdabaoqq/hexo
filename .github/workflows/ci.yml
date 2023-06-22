@@ -14,8 +14,7 @@ jobs:
       - name: Build and Deploy
         uses: theme-keep/hexo-deploy-github-pages-action@master
         with:
-          node-version: '12.x'
-        run: npm install
+          node-version: 12
         env:
           PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           PUBLISH_REPOSITORY: wangdabaoqq/hexo
